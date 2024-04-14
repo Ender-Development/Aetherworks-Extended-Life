@@ -1,11 +1,12 @@
 package v0id.aw.common.tile;
 
+import teamroots.embers.api.power.IEmberCapability;
 import teamroots.embers.power.DefaultEmberCapability;
 
 /**
  * Created by V0idWa1k3r on 02-Jun-17.
  */
-public class SyncableEmberCapacity extends DefaultEmberCapability
+public class SyncableEmberCapacity extends DefaultEmberCapability implements IEmberCapability
 {
     private final ISyncable owner;
 

@@ -20,7 +20,9 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import org.apache.commons.lang3.tuple.Pair;
-import teamroots.embers.RegistryManager;
+import teamroots.embers.register.BlockRegister;
+import teamroots.embers.register.ItemRegister;
+import teamroots.embers.register.RegistryManager;
 import v0id.aw.common.block.AWBlocks;
 import v0id.aw.common.config.AWCfg;
 import v0id.aw.common.world.gen.AWGenerator;
@@ -133,11 +135,11 @@ public class CommonHandler
         if (event.getEntityPlayer() != null)
         {
             ItemStack stack = event.getItemStack();
-            if (RegistryManager.tinker_hammer.equals(stack.getItem()))
+            if (ItemRegister.TINKER_HAMMER.equals(stack.getItem()))
             {
                 World w = event.getWorld();
                 BlockPos pos = event.getPos();
-                Block dawnstoneBlkRef = RegistryManager.block_dawnstone;
+                Block dawnstoneBlkRef = BlockRegister.BLOCK_DAWNSTONE;
                 for (int[] ints : KERNEL)
                 {
                     BlockPos offset = pos.add(ints[0], 0, ints[1]);

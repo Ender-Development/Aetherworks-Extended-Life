@@ -14,7 +14,8 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import teamroots.embers.RegistryManager;
+import teamroots.embers.register.BlockRegister;
+import teamroots.embers.register.RegistryManager;
 import v0id.aw.AetherWorks;
 import v0id.aw.common.block.AWBlocks;
 import v0id.aw.common.fluid.AWFluids;
@@ -157,7 +158,7 @@ public class TilePrism extends TileEntity implements ITickable
                 w.getBlockState(pos.down()).getBlock().isAssociatedBlock(AWBlocks.PRISM_SUPPORT) && w.getBlockState(pos.down(2)).getBlock().isAssociatedBlock(AWBlocks.PRISM_SUPPORT) &&
 
                 // Tank
-                w.getBlockState(pos.down(3)).getBlock().isAssociatedBlock(RegistryManager.block_tank) &&
+                w.getBlockState(pos.down(3)).getBlock().isAssociatedBlock(BlockRegister.BLOCK_TANK) &&
 
                 // Air around
                 w.isAirBlock(pos.west()) && w.isAirBlock(pos.west(2)) && w.isAirBlock(pos.east()) && w.isAirBlock(pos.east(2)) && w.isAirBlock(pos.north()) && w.isAirBlock(pos.north(2)) && w.isAirBlock(pos.south()) && w.isAirBlock(pos.south(2)) &&
@@ -180,7 +181,7 @@ public class TilePrism extends TileEntity implements ITickable
             for (int dy = 0; dy < 3; ++dy)
             {
                 BlockPos offset = pos.offset(dir, 3).down(dy + 1);
-                Block test = dy == 0 ? RegistryManager.archaic_edge : RegistryManager.archaic_bricks;
+                Block test = dy == 0 ? BlockRegister.ARCHAIC_EDGE : BlockRegister.ARCHAIC_BRICKS;
                 if (!w.getBlockState(offset).getBlock().isAssociatedBlock(test))
                 {
                     return false;
@@ -190,7 +191,7 @@ public class TilePrism extends TileEntity implements ITickable
 
         for (int dy = 0; dy < 2; ++dy)
         {
-            Block test = dy == 0 ? RegistryManager.archaic_edge : RegistryManager.archaic_bricks;
+            Block test = dy == 0 ? BlockRegister.ARCHAIC_EDGE : BlockRegister.ARCHAIC_BRICKS;
             for (int i = 0; i < 4; ++i)
             {
                 BlockPos offset = pos.offset(i / 2 == 0 ? EnumFacing.WEST : EnumFacing.EAST, 2).offset(i % 2 == 0 ? EnumFacing.NORTH : EnumFacing.SOUTH, 2);

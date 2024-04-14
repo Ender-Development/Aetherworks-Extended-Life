@@ -21,7 +21,7 @@ import javax.annotation.Nullable;
  */
 public class TileHeater extends TileSyncableFluidHandler implements IForgePart
 {
-    private IEmberCapability capability = new SyncableEmberCapacity(this);
+    private SyncableEmberCapacity capability = new SyncableEmberCapacity(this);
 
     public TileHeater()
     {

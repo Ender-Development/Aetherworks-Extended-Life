@@ -36,7 +36,7 @@ import java.util.List;
  */
 public class TileForge extends TileEntity implements ISyncable, IForge, ITickable
 {
-    private IEmberCapability capability = new SyncableEmberCapacity(this);
+    private SyncableEmberCapacity capability = new SyncableEmberCapacity(this);
     private IHeatCapability heatCapability = new IHeatCapability.DefaultHeatCapability(3000){
         @Override
         public void setHeat(float f)
@@ -299,7 +299,7 @@ public class TileForge extends TileEntity implements ISyncable, IForge, ITickabl
     @Override
     public IEmberCapability getEmberCapability()
     {
-        return this.capability;
+        return (IEmberCapability) this.capability;
     }
 
     @Override

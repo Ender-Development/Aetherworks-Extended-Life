@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * Created by V0idWa1k3r on 31-May-17.
  */
-@Mod(modid = AWConsts.modid, dependencies = AWConsts.deps, useMetadata = true)
+@Mod(modid = AWConsts.modid,name = AWConsts.name, dependencies = AWConsts.deps, useMetadata = true)
 public class AetherWorks
 {
     private static List<ILifecycleListener> listenerList = Lists.newArrayList();

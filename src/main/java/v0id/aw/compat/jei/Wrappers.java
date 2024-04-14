@@ -9,7 +9,8 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
-import teamroots.embers.RegistryManager;
+import teamroots.embers.register.ItemRegister;
+import teamroots.embers.register.RegistryManager;
 import v0id.aw.common.item.Geode;
 import v0id.aw.common.recipe.AARecipes;
 import v0id.aw.common.recipe.MetalFormerRecipes;
@@ -113,7 +114,7 @@ public class Wrappers
         {
             if (this.is == null)
             {
-                this.is = new ItemStack(RegistryManager.shard_ember, 1, 0);
+                this.is = new ItemStack(ItemRegister.SHARD_EMBER, 1, 0);
             }
 
             return this.is;

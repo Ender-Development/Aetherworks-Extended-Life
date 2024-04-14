@@ -11,8 +11,10 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.oredict.OreDictionary;
-import teamroots.embers.ConfigManager;
-import teamroots.embers.RegistryManager;
+import teamroots.embers.config.ConfigMaterial;
+import teamroots.embers.register.FluidRegister;
+import teamroots.embers.register.ItemRegister;
+import teamroots.embers.register.RegistryManager;
 import teamroots.embers.item.EnumStampType;
 import teamroots.embers.recipe.*;
 import v0id.aw.common.block.AWBlocks;
@@ -27,35 +29,30 @@ import java.util.stream.Stream;
  * Created by V0idWa1k3r on 31-May-17.
  */
 @Mod.EventBusSubscriber
-public class AWRecipes implements ILifecycleListener
-{
+public class AWRecipes implements ILifecycleListener {
     @SubscribeEvent
-    public static void onRegisterRecipes(RegistryEvent.Register<IRecipe> event)
-    {
-        RecipeRegistry.stampingRecipes.add(new ItemStampingRecipe(new ItemStack(RegistryManager.shard_ember), new FluidStack(FluidRegistry.WATER, 1000), EnumStampType.TYPE_FLAT, new ItemStack(AWItems.RESOURCE, 1, 1), false, false));
-        RecipeRegistry.mixingRecipes.add(new FluidMixingRecipe(new FluidStack[]{ new FluidStack(AWFluids.FLUID_IMPURE_AETHERIUM_GAS, 8), new FluidStack(RegistryManager.fluid_molten_electrum, 8) }, new FluidStack(AWFluids.FLUID_AETHERIUM_GAS, 16)));
+    public static void onRegisterRecipes(RegistryEvent.Register<IRecipe> event) {
+        RecipeRegistry.stampingRecipes.add(new ItemStampingRecipe(new ItemStack(ItemRegister.SHARD_EMBER), new FluidStack(FluidRegistry.WATER, 1000), EnumStampType.TYPE_FLAT, new ItemStack(AWItems.RESOURCE, 1, 1), false, false));
+        RecipeRegistry.mixingRecipes.add(new FluidMixingRecipe(new FluidStack[]{new FluidStack(AWFluids.FLUID_IMPURE_AETHERIUM_GAS, 8), new FluidStack(FluidRegister.FLUID_MOLTEN_ELECTRUM, 8)}, new FluidStack(AWFluids.FLUID_AETHERIUM_GAS, 16)));
         RecipeRegistry.stampingRecipes.add(new ItemStampingRecipe(ItemStack.EMPTY, new FluidStack(AWFluids.FLUID_AETHERIUM_GAS, 16), EnumStampType.TYPE_FLAT, new ItemStack(AWItems.RESOURCE, 1, 0), false, false));
         RecipeRegistry.meltingOreRecipes.add(new ItemMeltingOreRecipe("shardAether", new FluidStack(AWFluids.FLUID_AETHERIUM_GAS, 16)));
         RecipeRegistry.alchemyRecipes.add(new AlchemyRecipe(12, 16, 12, 16, 12, 16, 12, 16, 12, 16, new ItemStack(AWItems.RESOURCE, 1, 7), ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY, new ItemStack(AWItems.RESOURCE, 1, 8)));
         RecipeRegistry.alchemyRecipes.add(new AlchemyRecipe(32, 32, 48, 64, 0, 0, 48, 64, 0, 0, new ItemStack(AWItems.RESOURCE, 1, 10), new ItemStack(AWItems.RESOURCE, 1, 0), new ItemStack(AWItems.RESOURCE, 1, 0), new ItemStack(AWItems.RESOURCE, 1, 0), new ItemStack(AWItems.RESOURCE, 1, 0), new ItemStack(AWItems.RESOURCE, 1, 11)));
-        RecipeRegistry.alchemyRecipes.add(new AlchemyRecipe(32, 32, 0, 0, 48, 64, 0, 0, 48, 64, new ItemStack(AWItems.RESOURCE, 1, 10), new ItemStack(RegistryManager.crystal_ember, 1, 0), new ItemStack(RegistryManager.crystal_ember, 1, 0), new ItemStack(RegistryManager.crystal_ember, 1, 0), new ItemStack(RegistryManager.crystal_ember, 1, 0), new ItemStack(AWItems.RESOURCE, 1, 12)));
+        RecipeRegistry.alchemyRecipes.add(new AlchemyRecipe(32, 32, 0, 0, 48, 64, 0, 0, 48, 64, new ItemStack(AWItems.RESOURCE, 1, 10), new ItemStack(ItemRegister.CRYSTAL_EMBER, 1, 0), new ItemStack(ItemRegister.CRYSTAL_EMBER, 1, 0), new ItemStack(ItemRegister.CRYSTAL_EMBER, 1, 0), new ItemStack(ItemRegister.CRYSTAL_EMBER, 1, 0), new ItemStack(AWItems.RESOURCE, 1, 12)));
         RecipeRegistry.alchemyRecipes.add(new AlchemyRecipe(0, 0, 48, 64, 48, 64, 32, 32, 0, 0, new ItemStack(AWItems.RESOURCE, 1, 14), new ItemStack(Items.PRISMARINE_CRYSTALS, 1, 0), new ItemStack(Items.PRISMARINE_SHARD, 1, 0), new ItemStack(Items.PRISMARINE_CRYSTALS, 1, 0), new ItemStack(Items.PRISMARINE_SHARD, 1, 0), new ItemStack(AWItems.RESOURCE, 1, 15)));
         RecipeRegistry.alchemyRecipes.add(new AlchemyRecipe(48, 64, 0, 0, 0, 0, 32, 32, 48, 64, new ItemStack(AWItems.RESOURCE, 1, 14), new ItemStack(Items.ENDER_PEARL, 1, 0), new ItemStack(Items.ENDER_EYE, 1, 0), new ItemStack(Items.ENDER_PEARL, 1, 0), new ItemStack(Items.ENDER_EYE, 1, 0), new ItemStack(AWItems.RESOURCE, 1, 16)));
         RecipeRegistry.alchemyRecipes.add(new AlchemyRecipe(48, 64, 0, 0, 48, 64, 0, 0, 30, 34, new ItemStack(AWItems.RESOURCE, 1, 18), new ItemStack(Items.REDSTONE, 1, 0), new ItemStack(Blocks.PISTON, 1, 0), new ItemStack(Blocks.REDSTONE_TORCH, 1, 0), new ItemStack(Items.REPEATER, 1, 0), new ItemStack(AWItems.RESOURCE, 1, 19)));
         RecipeRegistry.alchemyRecipes.add(new AlchemyRecipe(0, 0, 48, 64, 0, 0, 32, 64, 30, 34, new ItemStack(AWItems.RESOURCE, 1, 18), new ItemStack(Items.SLIME_BALL, 1, 0), new ItemStack(Blocks.STICKY_PISTON, 1, 0), new ItemStack(Items.COMPARATOR, 1, 0), new ItemStack(Blocks.HOPPER, 1, 0), new ItemStack(AWItems.RESOURCE, 1, 20)));
         RecipeRegistry.alchemyRecipes.add(new AlchemyRecipe(16, 16, 16, 16, 16, 16, 16, 16, 16, 16, new ItemStack(AWItems.RESOURCE, 1, 22), new ItemStack(AWItems.RESOURCE, 1, 5), new ItemStack(Items.ENDER_EYE, 1, 0), new ItemStack(Blocks.OBSIDIAN, 1, 0), new ItemStack(Blocks.OBSIDIAN, 1, 0), new ItemStack(AWItems.CROWN, 1, 0)));
-        RecipeRegistry.alchemyRecipes.add(new AlchemyRecipe(32, 48, 32, 32, 0, 0, 0, 0, 32, 32, new ItemStack(AWItems.RESOURCE, 1, 25), new ItemStack(RegistryManager.plate_lead, 1, 0), new ItemStack(Blocks.LEVER, 1, 0), new ItemStack(RegistryManager.plate_lead, 1, 0), new ItemStack(Blocks.IRON_BARS, 1, 0), new ItemStack(AWItems.RESOURCE, 1, 27)));
-        RecipeRegistry.alchemyRecipes.add(new AlchemyRecipe(0, 0, 32, 48, 0, 0, 32, 32, 32, 32, new ItemStack(AWItems.RESOURCE, 1, 26), new ItemStack(Blocks.QUARTZ_BLOCK, 1, 0), new ItemStack(Blocks.GLASS, 1, 0), new ItemStack(Blocks.QUARTZ_BLOCK, 1, 0), new ItemStack(RegistryManager.eldritch_insignia, 1, 0), new ItemStack(AWItems.RESOURCE, 1, 28)));
-        RecipeRegistry.alchemyRecipes.add(new AlchemyRecipe(0, 0, 32, 32, 32, 48, 0, 0, 32, 32, new ItemStack(AWItems.RESOURCE, 1, 26), new ItemStack(Blocks.MAGMA, 1, 0), new ItemStack(RegistryManager.blasting_core, 1, 0), new ItemStack(Blocks.MAGMA, 1, 0), new ItemStack(RegistryManager.jet_augment, 1, 0), new ItemStack(AWItems.RESOURCE, 1, 29)));
-        if (ConfigManager.enableBronze)
-        {
-            MetalFormerRecipes.addRecipe(new FluidStack(AWFluids.FLUID_AETHERIUM_GAS, 144), new ItemStack(RegistryManager.ingot_bronze, 1, 0), new ItemStack(AWItems.RESOURCE, 1, 4), 2100);
-            MetalFormerRecipes.addRecipe(new FluidStack(AWFluids.FLUID_AETHERIUM_GAS, 144), new ItemStack(RegistryManager.plate_bronze, 1, 0), new ItemStack(AWItems.RESOURCE, 1, 3), 2100);
-        }
-        else
-        {
-            MetalFormerRecipes.addRecipe(new FluidStack(AWFluids.FLUID_AETHERIUM_GAS, 144), new ItemStack(RegistryManager.ingot_dawnstone, 1, 0), new ItemStack(AWItems.RESOURCE, 1, 4), 2100);
-            MetalFormerRecipes.addRecipe(new FluidStack(AWFluids.FLUID_AETHERIUM_GAS, 144), new ItemStack(RegistryManager.plate_dawnstone, 1, 0), new ItemStack(AWItems.RESOURCE, 1, 3), 2100);
+        RecipeRegistry.alchemyRecipes.add(new AlchemyRecipe(32, 48, 32, 32, 0, 0, 0, 0, 32, 32, new ItemStack(AWItems.RESOURCE, 1, 25), new ItemStack(ItemRegister.PLATE_LEAD, 1, 0), new ItemStack(Blocks.LEVER, 1, 0), new ItemStack(ItemRegister.PLATE_LEAD, 1, 0), new ItemStack(Blocks.IRON_BARS, 1, 0), new ItemStack(AWItems.RESOURCE, 1, 27)));
+        RecipeRegistry.alchemyRecipes.add(new AlchemyRecipe(0, 0, 32, 48, 0, 0, 32, 32, 32, 32, new ItemStack(AWItems.RESOURCE, 1, 26), new ItemStack(Blocks.QUARTZ_BLOCK, 1, 0), new ItemStack(Blocks.GLASS, 1, 0), new ItemStack(Blocks.QUARTZ_BLOCK, 1, 0), new ItemStack(ItemRegister.ELDRITCH_INSIGNIA, 1, 0), new ItemStack(AWItems.RESOURCE, 1, 28)));
+        RecipeRegistry.alchemyRecipes.add(new AlchemyRecipe(0, 0, 32, 32, 32, 48, 0, 0, 32, 32, new ItemStack(AWItems.RESOURCE, 1, 26), new ItemStack(Blocks.MAGMA, 1, 0), new ItemStack(ItemRegister.BLASTING_CORE, 1, 0), new ItemStack(Blocks.MAGMA, 1, 0), new ItemStack(ItemRegister.JET_AUGMENT, 1, 0), new ItemStack(AWItems.RESOURCE, 1, 29)));
+        if (ConfigMaterial.BRONZE.isNotOff()) {
+            MetalFormerRecipes.addRecipe(new FluidStack(AWFluids.FLUID_AETHERIUM_GAS, 144), new ItemStack(ItemRegister.INGOT_BRONZE, 1, 0), new ItemStack(AWItems.RESOURCE, 1, 4), 2100);
+            MetalFormerRecipes.addRecipe(new FluidStack(AWFluids.FLUID_AETHERIUM_GAS, 144), new ItemStack(ItemRegister.PLATE_BRONZE, 1, 0), new ItemStack(AWItems.RESOURCE, 1, 3), 2100);
+        } else {
+            MetalFormerRecipes.addRecipe(new FluidStack(AWFluids.FLUID_AETHERIUM_GAS, 144), new ItemStack(ItemRegister.INGOT_DAWNSTONE, 1, 0), new ItemStack(AWItems.RESOURCE, 1, 4), 2100);
+            MetalFormerRecipes.addRecipe(new FluidStack(AWFluids.FLUID_AETHERIUM_GAS, 144), new ItemStack(ItemRegister.PLATE_DAWNSTONE, 1, 0), new ItemStack(AWItems.RESOURCE, 1, 3), 2100);
         }
 
         MetalFormerRecipes.addRecipe(new FluidStack(AWFluids.FLUID_AETHERIUM_GAS, 576), new ItemStack(Items.DIAMOND, 1, 0), new ItemStack(AWItems.RESOURCE, 1, 5), 2200);
@@ -74,8 +71,7 @@ public class AWRecipes implements ILifecycleListener
     }
 
     @Override
-    public void init(FMLInitializationEvent evt)
-    {
+    public void init(FMLInitializationEvent evt) {
         OreDictionary.registerOre("ice", Blocks.ICE);
         OreDictionary.registerOre("icePacked", Blocks.PACKED_ICE);
         OreDictionary.registerOre("oreAether", AWBlocks.AETHER_ORE);
@@ -89,8 +85,7 @@ public class AWRecipes implements ILifecycleListener
         OreDictionary.registerOre("gemAether", new ItemStack(AWItems.RESOURCE, 1, 5));
     }
 
-    private static void registerGeodes()
-    {
+    private static void registerGeodes() {
         AARecipes.GeodeRecipe.addEntry(Geode.Type.BASIC, "cobblestone", 10);
         AARecipes.GeodeRecipe.addEntry(Geode.Type.BASIC, "stone", 10);
         AARecipes.GeodeRecipe.addEntry(Geode.Type.BASIC, "stoneGranite", 10);

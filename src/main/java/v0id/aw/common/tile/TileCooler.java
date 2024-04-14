@@ -25,7 +25,7 @@ import javax.annotation.Nullable;
  */
 public class TileCooler extends TileSyncableFluidHandler implements IForgePart
 {
-    private IEmberCapability capability = new SyncableEmberCapacity(this);
+    private SyncableEmberCapacity capability = new SyncableEmberCapacity(this);
     private int cooldown = 2400;
 
     public TileCooler()

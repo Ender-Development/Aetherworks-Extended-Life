@@ -16,7 +16,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import teamroots.embers.RegistryManager;
+import teamroots.embers.register.BlockRegister;
+import teamroots.embers.register.RegistryManager;
 import v0id.aw.common.creativetabs.AWTabs;
 import v0id.aw.common.handler.CommonHandler;
 import v0id.aw.lib.AWConsts;
@@ -98,7 +99,7 @@ public class Structure extends Block
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(RegistryManager.block_dawnstone);
+        return Item.getItemFromBlock(BlockRegister.BLOCK_DAWNSTONE);
     }
 
     @Override
@@ -110,7 +111,7 @@ public class Structure extends Block
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(RegistryManager.block_dawnstone, 1, 0);
+        return new ItemStack(BlockRegister.BLOCK_DAWNSTONE, 1, 0);
     }
 
     @Override
@@ -206,7 +207,7 @@ public class Structure extends Block
                     BlockPos at = offset.add(ints[0], 0, ints[1]);
                     if (worldIn.getBlockState(at).getBlock() == this)
                     {
-                        worldIn.setBlockState(at, RegistryManager.block_dawnstone.getDefaultState(), 0b10);
+                        worldIn.setBlockState(at, BlockRegister.BLOCK_DAWNSTONE.getDefaultState(), 0b10);
                     }
                 }
             }

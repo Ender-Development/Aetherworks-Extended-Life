@@ -267,7 +267,7 @@ public class AWCrossbow extends ItemBow
         stack.getTagCompound().setTag("arrow", arrow.serializeNBT());
     }
 
-    private ItemStack findAmmo(EntityPlayer player)
+    public ItemStack findAmmo(EntityPlayer player)
     {
         if (this.isArrow(player.getHeldItem(EnumHand.OFF_HAND)))
         {

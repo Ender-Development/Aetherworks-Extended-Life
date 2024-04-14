@@ -1,0 +1,31 @@
+dependencies {
+    implementation "CraftTweaker2:CraftTweaker2-API:" + project.version_crafttweaker
+    implementation "CraftTweaker2:ZenScript:" + project.version_crafttweaker
+    implementation "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-" + project.version_crafttweaker
+
+    implementation rfg.deobf("curse.maven:had-enough-items-557549:" + project.version_hadenoughitems)
+    implementation("com.cleanroommc:groovyscript:" + project.version_groovyscript) { transitive = false }
+    // so it doesn't installs JEI
+
+    implementation rfg.deobf("curse.maven:embers-extended-life-936489:" + project.version_embers)
+
+    compileOnly "com.azanor.baubles:Baubles:1.12-" + project.version_baubles
+    if (project.debug_baubles.toBoolean()
+            || project.debug_aetherworks.toBoolean()) {
+        runtimeOnly "com.azanor.baubles:Baubles:1.12-" + project.version_baubles
+    }
+
+    compileOnly rfg.deobf("curse.maven:aetherium-ashen-armor-359467:" + project.version_aetheriumashenarmor)
+    if (project.debug_aetheriumashenarmor.toBoolean()) {
+        runtimeOnly rfg.deobf("curse.maven:aetherium-ashen-armor-359467:" + project.version_aetheriumashenarmor)
+    }
+
+    runtimeOnly rfg.deobf("curse.maven:the-one-probe-community-edition-885670:" + project.version_top)
+    runtimeOnly rfg.deobf("curse.maven:vintagefix-871198:" + project.version_vintagefix)
+    runtimeOnly rfg.deobf("curse.maven:startup-timer-782070:" + project.version_startuptimer)
+
+    runtimeOnly "com.cleanroommc:configanytime:" + project.version_configanytime
+    runtimeOnly rfg.deobf("curse.maven:red-core-873867:" + project.version_redcore)
+    runtimeOnly rfg.deobf("curse.maven:alfheim-lighting-engine-910715:" + project.version_alfheim)
+    runtimeOnly rfg.deobf("curse.maven:valkyrie-874067:" + project.version_valkyrie)
+}
