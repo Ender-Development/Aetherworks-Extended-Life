@@ -3,8 +3,8 @@
 # Aetherworks - Unofficial Extended Life
 
 [![License](https://img.shields.io/github/license/Ender-Development/Aetherworks-Extended-Life.svg?label=License)](LICENSE)
-[![Versions](https://img.shields.io/curseforge/game-versions/982730?logo=curseforge&label=Game%20Version)](https://www.curseforge.com/minecraft/mc-mods/aetherworks-extended-life)
-[![Downloads](https://img.shields.io/curseforge/dt/982730?logo=curseforge&label=Downloads)](https://www.curseforge.com/minecraft/mc-mods/aetherworks-extended-life)
+[![Versions](https://img.shields.io/curseforge/game-versions/1003576?logo=curseforge&label=Game%20Version)](https://www.curseforge.com/minecraft/mc-mods/aetherworks-extended-life)
+[![Downloads](https://img.shields.io/curseforge/dt/1003576?logo=curseforge&label=Downloads)](https://www.curseforge.com/minecraft/mc-mods/aetherworks-extended-life)
 
 *A dwarven magic addon*
 • [CurseForge](https://curseforge.com/minecraft/mc-mods/aetherworks-extended-life)
