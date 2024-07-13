@@ -2,6 +2,10 @@
 
 A dwarven magic addon
 
+## v1.1.1 - Forge Fix
+### Bugfixes
+- fixed crash when trying to craft anything with the forge
+
 ## v1.1.0 - UEL
 ### Changes
 - added CHANGELOG.md
