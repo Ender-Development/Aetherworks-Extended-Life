@@ -28,7 +28,7 @@ public interface IForge
 
     boolean canFunction();
 
-    IEmberCapability getEmberCapability();
+    SyncableEmberCapacity getEmberCapability();
 
     List<IFluidHandler> getAttachedFluidHandlers();
 }

@@ -297,9 +297,9 @@ public class TileForge extends TileEntity implements ISyncable, IForge, ITickabl
     }
 
     @Override
-    public IEmberCapability getEmberCapability()
+    public SyncableEmberCapacity getEmberCapability()
     {
-        return (IEmberCapability) this.capability;
+        return this.capability;
     }
 
     @Override
