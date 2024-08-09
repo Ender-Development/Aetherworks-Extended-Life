@@ -29,7 +29,7 @@ import java.util.function.Predicate;
 /**
  * Created by V0idWa1k3r on 04-Jun-17.
  */
-@Mod.EventBusSubscriber(modid = AWConsts.modid)
+@Mod.EventBusSubscriber(modid = AWConsts.MODID)
 public class AWHarvestHelper
 {
     private static final Map<UUID, AWHarvestNode> nodes = Maps.newHashMap();

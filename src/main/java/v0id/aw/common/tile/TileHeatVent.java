@@ -5,6 +5,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import v0id.aw.common.block.forge.Component;
+import v0id.aw.common.config.ConfigMachine;
 
 /**
  * Created by V0idWa1k3r on 02-Jun-17.
@@ -54,7 +55,7 @@ public class TileHeatVent extends TileEntity implements IForgePart
             }
             else
             {
-                forge.getHeatCapability().setHeat(forge.getHeatCapability().getHeatStored() - 0.5F);
+                forge.getHeatCapability().setHeat(forge.getHeatCapability().getHeatStored() - (float) (ConfigMachine.HEAT_VENT.heat_per_tick * -1));
             }
         }
     }

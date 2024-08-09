@@ -96,7 +96,7 @@ public interface IHeatCapability extends INBTSerializable<NBTTagCompound>
     {
         @CapabilityInject(IHeatCapability.class)
         public static Capability<IHeatCapability> cap = null;
-        public static final ResourceLocation KEY = new ResourceLocation(AWConsts.modid, "heatCap");
+        public static final ResourceLocation KEY = new ResourceLocation(AWConsts.MODID, "heatCap");
 
         public static void register()
         {

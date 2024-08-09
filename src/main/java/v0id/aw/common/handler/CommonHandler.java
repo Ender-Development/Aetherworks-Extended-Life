@@ -22,9 +22,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import org.apache.commons.lang3.tuple.Pair;
 import teamroots.embers.register.BlockRegister;
 import teamroots.embers.register.ItemRegister;
-import teamroots.embers.register.RegistryManager;
 import v0id.aw.common.block.AWBlocks;
-import v0id.aw.common.config.AWCfg;
+import v0id.aw.common.config.ConfigWorld;
 import v0id.aw.common.world.gen.AWGenerator;
 import v0id.aw.lib.AWConsts;
 
@@ -60,10 +59,10 @@ public class CommonHandler
     @SubscribeEvent
     public void onChunkLoad(ChunkDataEvent.Load event)
     {
-        if (AWCfg.worldGen.enableRetrogen)
+        if (ConfigWorld.ORE.enableRetrogen)
         {
             NBTTagCompound tag = event.getData();
-            if (!tag.hasKey(AWConsts.modid, Constants.NBT.TAG_COMPOUND) || !tag.getCompoundTag(AWConsts.modid).hasKey("retrogenKey") || !tag.getCompoundTag(AWConsts.modid).getString("retrogenKey").equalsIgnoreCase(AWCfg.worldGen.retrogenKey))
+            if (!tag.hasKey(AWConsts.MODID, Constants.NBT.TAG_COMPOUND) || !tag.getCompoundTag(AWConsts.MODID).hasKey("retrogenKey") || !tag.getCompoundTag(AWConsts.MODID).getString("retrogenKey").equalsIgnoreCase(ConfigWorld.ORE.retrogenKey))
             {
                 retrogenList.add(Pair.of(event.getWorld().provider.getDimension(), event.getChunk().getPos()));
             }
@@ -80,7 +79,7 @@ public class CommonHandler
     @SubscribeEvent
     public void onWorldTick(TickEvent.WorldTickEvent event)
     {
-        if (AWCfg.worldGen.enableRetrogen && event.phase == TickEvent.Phase.START && event.side == Side.SERVER)
+        if (ConfigWorld.ORE.enableRetrogen && event.phase == TickEvent.Phase.START && event.side == Side.SERVER)
         {
             Stack<Pair<Integer, ChunkPos>> toRemove = new Stack<>();
             for (Pair<Integer, ChunkPos> data : retrogenList)
@@ -117,15 +116,15 @@ public class CommonHandler
     @SubscribeEvent
     public void onChunkSave(ChunkDataEvent.Save event)
     {
-        if (AWCfg.worldGen.enableRetrogen)
+        if (ConfigWorld.ORE.enableRetrogen)
         {
             NBTTagCompound tag = event.getData();
-            if (!tag.hasKey(AWConsts.modid, Constants.NBT.TAG_COMPOUND))
+            if (!tag.hasKey(AWConsts.MODID, Constants.NBT.TAG_COMPOUND))
             {
-                tag.setTag(AWConsts.modid, new NBTTagCompound());
+                tag.setTag(AWConsts.MODID, new NBTTagCompound());
             }
 
-            tag.getCompoundTag(AWConsts.modid).setString("retrogenKey", AWCfg.worldGen.retrogenKey);
+            tag.getCompoundTag(AWConsts.MODID).setString("retrogenKey", ConfigWorld.ORE.retrogenKey);
         }
     }
 

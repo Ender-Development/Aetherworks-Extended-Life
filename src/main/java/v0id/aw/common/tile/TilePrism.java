@@ -15,9 +15,9 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import teamroots.embers.register.BlockRegister;
-import teamroots.embers.register.RegistryManager;
 import v0id.aw.AetherWorks;
 import v0id.aw.common.block.AWBlocks;
+import v0id.aw.common.config.ConfigMachine;
 import v0id.aw.common.fluid.AWFluids;
 
 import static v0id.aw.common.block.prism.MoonlightAmplifier.FACING;
@@ -53,7 +53,7 @@ public class TilePrism extends TileEntity implements ITickable
     @Override
     public void update()
     {
-        if (++ticksExisted % 60 == 0)
+        if (++ticksExisted % (20 * ConfigMachine.AETHER_COLLECTOR.seconds_between_operations) == 0)
         {
             this.updateTick();
         }
@@ -124,7 +124,7 @@ public class TilePrism extends TileEntity implements ITickable
                 IFluidHandler handler = tile.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, EnumFacing.UP);
                 if (handler != null)
                 {
-                    FluidStack fs = new FluidStack(AWFluids.FLUID_IMPURE_AETHERIUM_GAS, 1);
+                    FluidStack fs = new FluidStack(AWFluids.FLUID_IMPURE_AETHERIUM_GAS, ConfigMachine.AETHER_COLLECTOR.aether_generated);
                     if (handler.fill(fs, false) > 0)
                     {
                         handler.fill(fs, true);
@@ -138,7 +138,9 @@ public class TilePrism extends TileEntity implements ITickable
     private boolean checkWorkConditions()
     {
         long time = this.world.getWorldTime() % 24000;
-        if (time < 15000 || time > 21000)
+        int start = ConfigMachine.AETHER_COLLECTOR.start_time;
+        int end = ConfigMachine.AETHER_COLLECTOR.stop_time;
+        if (time < start || time > end)
         {
             return false;
         }

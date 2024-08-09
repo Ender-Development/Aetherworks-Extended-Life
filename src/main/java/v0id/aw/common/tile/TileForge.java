@@ -26,6 +26,7 @@ import teamroots.embers.tileentity.TileEntityTank;
 import v0id.aw.AetherWorks;
 import v0id.aw.common.block.AWBlocks;
 import v0id.aw.common.block.forge.Component;
+import v0id.aw.common.config.ConfigMachine;
 import v0id.aw.common.handler.CommonHandler;
 
 import javax.annotation.Nullable;
@@ -36,8 +37,8 @@ import java.util.List;
  */
 public class TileForge extends TileEntity implements ISyncable, IForge, ITickable
 {
-    private SyncableEmberCapacity capability = new SyncableEmberCapacity(this);
-    private IHeatCapability heatCapability = new IHeatCapability.DefaultHeatCapability(3000){
+    private final SyncableEmberCapacity capability = new SyncableEmberCapacity(this);
+    private final IHeatCapability heatCapability = new IHeatCapability.DefaultHeatCapability(ConfigMachine.FORGE.heat_capacity){
         @Override
         public void setHeat(float f)
         {
@@ -50,8 +51,8 @@ public class TileForge extends TileEntity implements ISyncable, IForge, ITickabl
         }
     };
 
-    private Multimap<Component.Type, IForgePart> parts = HashMultimap.create();
-    private List<IFluidHandler> fluidHandlers = Lists.newArrayList();
+    private final Multimap<Component.Type, IForgePart> parts = HashMultimap.create();
+    private final List<IFluidHandler> fluidHandlers = Lists.newArrayList();
     private boolean isStructureValid;
     private float storedHeat;
     private int ticksInDanger = 0;
@@ -88,7 +89,7 @@ public class TileForge extends TileEntity implements ISyncable, IForge, ITickabl
     public TileForge()
     {
         super();
-        this.capability.setEmberCapacity(5000);
+        this.capability.setEmberCapacity(ConfigMachine.FORGE.ember_capacity);
         this.capability.setEmber(0);
     }
 
@@ -183,17 +184,17 @@ public class TileForge extends TileEntity implements ISyncable, IForge, ITickabl
             AetherWorks.proxy.spawnParticleGlow(this.getWorld(), this.getPos().getX() + 0.4F + this.getWorld().rand.nextFloat() * 0.2F, this.getPos().getY() + 0.2F + this.getWorld().rand.nextFloat() * 0.2F, this.getPos().getZ() + 0.4F + this.getWorld().rand.nextFloat() * 0.2F, 0F, this.getWorld().rand.nextFloat() * 0.02F, 0F, 255, 64, 16, 2F + this.getWorld().rand.nextFloat(), 40);
         }
 
-        if (current >= 2100)
+        if (current >= ConfigMachine.FORGE.heat_capacity * (0.7F))
         {
             AetherWorks.proxy.spawnParticleGlow(this.getWorld(), this.getPos().getX() - 1 + this.getWorld().rand.nextFloat() * 3, this.getPos().getY(), this.getPos().getZ() - 1F + this.getWorld().rand.nextFloat() * 3, 0F, this.getWorld().rand.nextFloat() * 0.02F, 0F, 255, 64, 16, 2F + this.getWorld().rand.nextFloat(), 40);
         }
 
-        if (current >= 2900)
+        if (current >= ConfigMachine.FORGE.heat_capacity * (0.96F))
         {
             this.getWorld().spawnParticle(EnumParticleTypes.FLAME, this.getPos().getX() - 1 + this.getWorld().rand.nextFloat() * 3, this.getPos().getY(), this.getPos().getZ() - 1F + this.getWorld().rand.nextFloat() * 3, 0F, this.getWorld().rand.nextFloat() * 0.02F, 0F);
         }
 
-        if (current >= 2800)
+        if (current >= ConfigMachine.FORGE.heat_capacity * (0.93F))
         {
             this.getWorld().spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.getPos().getX() - 1 + this.getWorld().rand.nextFloat() * 3, this.getPos().getY(), this.getPos().getZ() - 1F + this.getWorld().rand.nextFloat() * 3, 0F, this.getWorld().rand.nextFloat() * 0.02F, 0F);
         }

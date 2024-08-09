@@ -57,16 +57,16 @@ import java.util.stream.StreamSupport;
 public class AWClient implements IAWProxy
 {
     public static final Map<ResourceLocation, TextureAtlasSprite> cachedModSprites = Maps.newHashMap();
-    public static final ResourceLocation LOCATION_PRISM_OVERLAY = new ResourceLocation(AWConsts.modid, "blocks/prism_active_overlay_0");
+    public static final ResourceLocation LOCATION_PRISM_OVERLAY = new ResourceLocation(AWConsts.MODID, "blocks/prism_active_overlay_0");
     public static final ResourceLocation[] LOCATION_RUNES = {
-            new ResourceLocation(AWConsts.modid, "blocks/runes/a"),
-            new ResourceLocation(AWConsts.modid, "blocks/runes/e"),
-            new ResourceLocation(AWConsts.modid, "blocks/runes/h"),
-            new ResourceLocation(AWConsts.modid, "blocks/runes/r"),
-            new ResourceLocation(AWConsts.modid, "blocks/runes/t")
+            new ResourceLocation(AWConsts.MODID, "blocks/runes/a"),
+            new ResourceLocation(AWConsts.MODID, "blocks/runes/e"),
+            new ResourceLocation(AWConsts.MODID, "blocks/runes/h"),
+            new ResourceLocation(AWConsts.MODID, "blocks/runes/r"),
+            new ResourceLocation(AWConsts.MODID, "blocks/runes/t")
     };
 
-    public static final ResourceLocation LOCATION_FORGE_OVERLAY = new ResourceLocation(AWConsts.modid, "blocks/forge_overlay");
+    public static final ResourceLocation LOCATION_FORGE_OVERLAY = new ResourceLocation(AWConsts.MODID, "blocks/forge_overlay");
 
     @SubscribeEvent
     public void onModelRegistry(ModelRegistryEvent event)

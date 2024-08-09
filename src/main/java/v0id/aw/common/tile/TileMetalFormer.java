@@ -24,7 +24,7 @@ import java.util.Random;
  */
 public class TileMetalFormer extends TileSyncableFluidHandler implements IForgePart
 {
-    private ItemStackHandler inventory = new ItemStackHandler(1){
+    private final ItemStackHandler inventory = new ItemStackHandler(1){
         protected void onContentsChanged(int slot)
         {
             if (!TileMetalFormer.this.world.isRemote)

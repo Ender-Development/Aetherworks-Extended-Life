@@ -13,8 +13,8 @@ import v0id.aw.lib.ILifecycleListener;
 /**
  * Created by V0idWa1k3r on 31-May-17.
  */
-@Mod.EventBusSubscriber(modid = AWConsts.modid)
-@GameRegistry.ObjectHolder(value = AWConsts.modid)
+@Mod.EventBusSubscriber(modid = AWConsts.MODID)
+@GameRegistry.ObjectHolder(value = AWConsts.MODID)
 public class AWItems implements ILifecycleListener
 {
     @GameRegistry.ObjectHolder(value = AWConsts.itemResourceID)

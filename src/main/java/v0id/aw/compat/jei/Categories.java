@@ -45,7 +45,7 @@ public class Categories
         @Override
         public String getModName()
         {
-            return AWConsts.modid;
+            return AWConsts.MODID;
         }
 
         @Override
@@ -95,7 +95,7 @@ public class Categories
         @Override
         public String getModName()
         {
-            return AWConsts.modid;
+            return AWConsts.MODID;
         }
 
         @Override

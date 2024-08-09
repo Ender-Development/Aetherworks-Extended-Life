@@ -25,7 +25,7 @@ import java.util.Random;
  */
 public class TileAnvil extends TileEntity implements IForgePart, ISyncable
 {
-    private ItemStackHandler inventory = new ItemStackHandler(1){
+    private final ItemStackHandler inventory = new ItemStackHandler(1){
         protected void onContentsChanged(int slot)
         {
             if (!TileAnvil.this.world.isRemote)

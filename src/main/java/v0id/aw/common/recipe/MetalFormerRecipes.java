@@ -33,10 +33,10 @@ public class MetalFormerRecipes
 
     public static class MetalFormerRecipe
     {
-        private FluidStack fluidRequirements;
-        private ItemStack in;
-        private ItemStack out;
-        private int temperature;
+        private final FluidStack fluidRequirements;
+        private final ItemStack in;
+        private final ItemStack out;
+        private final int temperature;
 
         public MetalFormerRecipe(FluidStack fluidRequirements, ItemStack in, ItemStack out, int temperature)
         {

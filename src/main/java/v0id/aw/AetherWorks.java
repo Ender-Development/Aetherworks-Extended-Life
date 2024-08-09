@@ -26,10 +26,10 @@ import java.util.List;
 /**
  * Created by V0idWa1k3r on 31-May-17.
  */
-@Mod(modid = AWConsts.modid,name = AWConsts.name, dependencies = AWConsts.deps, useMetadata = true)
+@Mod(modid = AWConsts.MODID,name = AWConsts.MODNAME, dependencies = AWConsts.deps, useMetadata = true)
 public class AetherWorks
 {
-    private static List<ILifecycleListener> listenerList = Lists.newArrayList();
+    private static final List<ILifecycleListener> listenerList = Lists.newArrayList();
     private static AetherWorks instance;
 
     @SidedProxy(clientSide = AWConsts.clientProxy, serverSide = AWConsts.serverProxy)

@@ -12,6 +12,7 @@ import net.minecraftforge.fluids.FluidStack;
 import teamroots.embers.power.EmberCapabilityProvider;
 import teamroots.embers.power.IEmberCapability;
 import v0id.aw.common.block.forge.Component;
+import v0id.aw.common.config.ConfigMachine;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -21,12 +22,12 @@ import javax.annotation.Nullable;
  */
 public class TileHeater extends TileSyncableFluidHandler implements IForgePart
 {
-    private SyncableEmberCapacity capability = new SyncableEmberCapacity(this);
+    private final SyncableEmberCapacity capability = new SyncableEmberCapacity(this);
 
     public TileHeater()
     {
         super();
-        this.capability.setEmberCapacity(1000);
+        this.capability.setEmberCapacity(ConfigMachine.HEATER.ember_capacity);
         this.capability.setEmber(0);
     }
 
@@ -92,18 +93,15 @@ public class TileHeater extends TileSyncableFluidHandler implements IForgePart
         {
             if (this.getWorld().getBlockState(this.getPos().down()).getMaterial() == Material.LAVA)
             {
-                FluidStack water = new FluidStack(FluidRegistry.WATER, 1);
-                if (this.tank.drain(water, false) != null && this.capability.removeAmount(0.25, false) == 0.25)
+                FluidStack water = new FluidStack(FluidRegistry.WATER, ConfigMachine.HEATER.water_per_tick);
+                FluidStack tryDrain = this.tank.drain(water, false);
+                if (tryDrain != null && tryDrain.amount >= ConfigMachine.HEATER.water_per_tick && this.capability.removeAmount(ConfigMachine.HEATER.ember_per_tick, false) == ConfigMachine.HEATER.ember_per_tick)
                 {
                     this.tank.drain(water, true);
-                    this.capability.removeAmount(0.25, true);
-                    forge.transferHeat(1);
+                    this.capability.removeAmount(ConfigMachine.HEATER.ember_per_tick, true);
+                    forge.transferHeat(ConfigMachine.HEATER.heat_per_tick);
                 }
             }
-        }
-        else
-        {
-            return;
         }
     }
 

@@ -16,6 +16,7 @@ import net.minecraftforge.fluids.FluidStack;
 import teamroots.embers.power.EmberCapabilityProvider;
 import teamroots.embers.power.IEmberCapability;
 import v0id.aw.common.block.forge.Component;
+import v0id.aw.common.config.ConfigMachine;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -25,13 +26,13 @@ import javax.annotation.Nullable;
  */
 public class TileCooler extends TileSyncableFluidHandler implements IForgePart
 {
-    private SyncableEmberCapacity capability = new SyncableEmberCapacity(this);
-    private int cooldown = 2400;
+    private final SyncableEmberCapacity capability = new SyncableEmberCapacity(this);
+    private int cooldown = ConfigMachine.COOLER.cooldown_between_activation;
 
     public TileCooler()
     {
         super();
-        this.capability.setEmberCapacity(1000);
+        this.capability.setEmberCapacity(ConfigMachine.COOLER.ember_capacity);
         this.capability.setEmber(0);
     }
 
@@ -104,16 +105,16 @@ public class TileCooler extends TileSyncableFluidHandler implements IForgePart
                     Block b = this.world.getBlockState(pos.down()).getBlock();
                     FluidStack drainedStack = new FluidStack(FluidRegistry.WATER, Fluid.BUCKET_VOLUME);
                     FluidStack tryDrain = this.tank.drain(drainedStack, false);
-                    if (tryDrain != null && tryDrain.amount == drainedStack.amount && this.capability.removeAmount(1000, false) == 1000)
+                    if (tryDrain != null && tryDrain.amount == drainedStack.amount && this.capability.removeAmount(ConfigMachine.COOLER.ember_per_activation, false) == ConfigMachine.COOLER.ember_per_activation)
                     {
                         if (b.isAssociatedBlock(Blocks.PACKED_ICE) || b.isAssociatedBlock(Blocks.ICE) || b.isAssociatedBlock(Blocks.SNOW))
                         {
                             this.world.setBlockToAir(pos.down());
                             this.tank.drain(drainedStack, true);
-                            this.capability.removeAmount(1000,true);
-                            this.cooldown = 2400;
+                            this.capability.removeAmount(ConfigMachine.COOLER.ember_per_activation, true);
+                            this.cooldown = ConfigMachine.COOLER.cooldown_between_activation;
                             this.world.playSound(null, this.getPos(), SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 1, 0.1F);
-                            forge.transferHeat(-500, true);
+                            forge.transferHeat((ConfigMachine.COOLER.heat_per_activation * -1), true);
                             if (forge.getHeatCapability().getHeatStored() < 0)
                             {
                                 forge.getHeatCapability().setHeat(0);

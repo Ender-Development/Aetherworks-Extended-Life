@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import v0id.aw.common.block.AWBlocks;
-import v0id.aw.common.config.AWCfg;
+import v0id.aw.common.config.ConfigWorld;
 import v0id.aw.common.handler.CommonHandler;
 import v0id.aw.lib.ILifecycleListener;
 
@@ -45,8 +45,7 @@ public class AWGenerator implements IWorldGenerator, ILifecycleListener
 
     private void doAetherOrePass(World w, int x, int z, Random rand)
     {
-        AWCfg.GenSettings settings = AWCfg.worldGen.oreAether;
-        if (ArrayUtils.contains(settings.blacklistDimensions, w.provider.getDimension()))
+        if (ArrayUtils.contains(ConfigWorld.ORE.oreAether.blacklistDimensions, w.provider.getDimension()))
         {
             return;
         }
@@ -62,13 +61,13 @@ public class AWGenerator implements IWorldGenerator, ILifecycleListener
             }
         }
 
-        float chance = settings.triesPerChunk;
+        float chance = ConfigWorld.ORE.oreAether.triesPerChunk;
         if (chance >= 1 || w.rand.nextFloat() <= chance)
         {
             for (int i = 0; i < chance; i++)
             {
-                BlockPos at = new BlockPos(x << 4, settings.minHeight + rand.nextInt(settings.maxHeight - settings.minHeight), z << 4);
-                WorldGenMinable minableGen = new WorldGenMinable(AWBlocks.AETHER_ORE.getDefaultState(), settings.veinSize);
+                BlockPos at = new BlockPos(x << 4, ConfigWorld.ORE.oreAether.minHeight + rand.nextInt(ConfigWorld.ORE.oreAether.maxHeight - ConfigWorld.ORE.oreAether.minHeight), z << 4);
+                WorldGenMinable minableGen = new WorldGenMinable(AWBlocks.AETHER_ORE.getDefaultState(), ConfigWorld.ORE.oreAether.veinSize);
                 minableGen.generate(w, rand, at);
             }
         }
