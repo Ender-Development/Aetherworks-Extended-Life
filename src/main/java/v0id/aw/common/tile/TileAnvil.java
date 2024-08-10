@@ -13,7 +13,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import v0id.aw.AetherWorks;
 import v0id.aw.common.block.forge.Component;
-import v0id.aw.common.recipe.AARecipes;
+import v0id.aw.common.recipe.AetheriumAnvilRecipes;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -40,7 +40,7 @@ public class TileAnvil extends TileEntity implements IForgePart, ISyncable
     public int progress;
     public float heatFluctuationsMemory;
     public int mistakes;
-    public Optional<AARecipes.AARecipe> hasRecipe = Optional.empty();
+    public Optional<AetheriumAnvilRecipes.AetheriumAnvilRecipe> hasRecipe = Optional.empty();
 
     @Override
     public void readFromNBT(NBTTagCompound tag)
@@ -113,7 +113,7 @@ public class TileAnvil extends TileEntity implements IForgePart, ISyncable
     {
         global: if (!this.inventory.getStackInSlot(0).isEmpty())
         {
-            Optional<AARecipes.AARecipe> recipe = AARecipes.findMatchingRecipe(this.inventory.getStackInSlot(0), (int) forge.getHeatCapability().getHeatStored());
+            Optional<AetheriumAnvilRecipes.AetheriumAnvilRecipe> recipe = AetheriumAnvilRecipes.findMatchingRecipe(this.inventory.getStackInSlot(0), (int) forge.getHeatCapability().getHeatStored());
             this.hasRecipe = recipe;
             if (recipe.isPresent())
             {

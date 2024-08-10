@@ -4,6 +4,7 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ListMultimap;
 import com.google.common.collect.Lists;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.world.World;
@@ -19,27 +20,27 @@ import java.util.Random;
 /**
  * Created by V0idWa1k3r on 03-Jun-17.
  */
-public class AARecipes
+public class AetheriumAnvilRecipes
 {
-    public static final List<AARecipe> recipes = Lists.newArrayList();
+    public static final List<AetheriumAnvilRecipe> recipes = Lists.newArrayList();
 
-    public static AARecipe addRecipe(ItemStack input, ItemStack output, int difficulty, int embersPerHit, int hitsRequired, int temperatureRequiredMin, int temperatureRequiredMax, float temperatureFluctuation)
+    public static AetheriumAnvilRecipe addRecipe(Ingredient input, ItemStack output, int difficulty, int embersPerHit, int hitsRequired, int temperatureRequiredMin, int temperatureRequiredMax, float temperatureFluctuation)
     {
-        return addRecipe(new AARecipe(input, output, difficulty, embersPerHit, hitsRequired, temperatureRequiredMin, temperatureRequiredMax, temperatureFluctuation));
+        return addRecipe(new AetheriumAnvilRecipe(input, output, difficulty, embersPerHit, hitsRequired, temperatureRequiredMin, temperatureRequiredMax, temperatureFluctuation));
     }
 
-    public static AARecipe addRecipe(AARecipe rec)
+    public static AetheriumAnvilRecipe addRecipe(AetheriumAnvilRecipe rec)
     {
         recipes.add(rec);
         return rec;
     }
 
-    public static Optional<AARecipe> findMatchingRecipe(ItemStack is, int temp)
+    public static Optional<AetheriumAnvilRecipe> findMatchingRecipe(ItemStack is, int temp)
     {
         return recipes.stream().filter(r -> r.matches(is, temp)).findFirst();
     }
 
-    public static class GeodeRecipe extends AARecipe
+    public static class GeodeRecipe extends AetheriumAnvilRecipe
     {
         public static final ListMultimap<Geode.Type, Entry> oreDictEntries = ArrayListMultimap.create();
 
@@ -53,7 +54,7 @@ public class AARecipes
             }
         }
 
-        public GeodeRecipe(ItemStack input, ItemStack output, int difficulty, int embersPerHit, int hitsRequired, int temperatureRequiredMin, int temperatureRequiredMax, float temperatureFluctuation)
+        public GeodeRecipe(Ingredient input, ItemStack output, int difficulty, int embersPerHit, int hitsRequired, int temperatureRequiredMin, int temperatureRequiredMax, float temperatureFluctuation)
         {
             super(input, output, difficulty, embersPerHit, hitsRequired, temperatureRequiredMin, temperatureRequiredMax, temperatureFluctuation);
         }
@@ -71,7 +72,7 @@ public class AARecipes
         @Override
         public ItemStack getOutput(@Nullable World w)
         {
-            Geode.Type geodeType = Geode.getType(this.getInput());
+            Geode.Type geodeType = Geode.getType(this.getInput().getMatchingStacks()[0]);
             if (oreDictEntries.containsKey(geodeType))
             {
                 List<Entry> entries = oreDictEntries.get(geodeType);
@@ -86,9 +87,9 @@ public class AARecipes
         }
     }
 
-    public static class AARecipe
+    public static class AetheriumAnvilRecipe
     {
-        private final ItemStack input;
+        private final Ingredient input;
         private final ItemStack output;
         private final int difficulty;
         private final int embersPerHit;
@@ -97,7 +98,7 @@ public class AARecipes
         private final int temperatureRequiredMax;
         private final float temperatureFluctuation;
 
-        public AARecipe(ItemStack input, ItemStack output, int difficulty, int embersPerHit, int hitsRequired, int temperatureRequiredMin, int temperatureRequiredMax, float temperatureFluctuation)
+        public AetheriumAnvilRecipe(Ingredient input, ItemStack output, int difficulty, int embersPerHit, int hitsRequired, int temperatureRequiredMin, int temperatureRequiredMax, float temperatureFluctuation)
         {
             this.input = input;
             this.output = output;
@@ -111,10 +112,10 @@ public class AARecipes
 
         public boolean matches(ItemStack in, int temperature)
         {
-            return RecipeUtils.areItemStacksEqual(in, this.getInput()) && temperature >= this.getTemperatureRequiredMin() && temperature <= this.getTemperatureRequiredMax();
+            return this.getInput().apply(in) && temperature >= this.getTemperatureRequiredMin() && temperature <= this.getTemperatureRequiredMax();
         }
 
-        public ItemStack getInput()
+        public Ingredient getInput()
         {
             return input;
         }

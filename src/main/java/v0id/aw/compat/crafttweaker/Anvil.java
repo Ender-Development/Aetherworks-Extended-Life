@@ -3,11 +3,13 @@ package v0id.aw.compat.crafttweaker;
 import crafttweaker.CraftTweakerAPI;
 import crafttweaker.IAction;
 import crafttweaker.annotations.ZenRegister;
+import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
-import v0id.aw.common.recipe.AARecipes;
+import v0id.aw.common.recipe.AetheriumAnvilRecipes;
 import v0id.aw.lib.RecipeUtils;
 
 import java.util.Iterator;
@@ -17,19 +19,19 @@ import java.util.Iterator;
 public class Anvil
 {
     @ZenMethod
-    public static void addRecipe(IItemStack input, IItemStack output, int temperatureMin, int temperatureMax, int embersPerHit, int difficulty, int hitsRequired, float temperatureFluctuation)
+    public static void addRecipe(IIngredient input, IItemStack output, int temperatureMin, int temperatureMax, int embersPerHit, int difficulty, int hitsRequired, float temperatureFluctuation)
     {
-        ItemStack in = (ItemStack)input.getInternal();
+        Ingredient in = (Ingredient) input.getInternal();
         ItemStack out = (ItemStack)output.getInternal();
-        CraftTweakerAPI.apply(new Add(new AARecipes.AARecipe(in, out, difficulty, embersPerHit, hitsRequired, temperatureMin, temperatureMax, temperatureFluctuation)));
+        CraftTweakerAPI.apply(new Add(new AetheriumAnvilRecipes.AetheriumAnvilRecipe(in, out, difficulty, embersPerHit, hitsRequired, temperatureMin, temperatureMax, temperatureFluctuation)));
     }
 
     @ZenMethod
     public static void addRecipe(IItemStack input, IItemStack output, int temperatureMin, int temperatureMax, int embersPerHit, int difficulty, int hitsRequired)
     {
-        ItemStack in = (ItemStack)input.getInternal();
+        Ingredient in = (Ingredient) input.getInternal();
         ItemStack out = (ItemStack)output.getInternal();
-        CraftTweakerAPI.apply(new Add(new AARecipes.AARecipe(in, out, difficulty, embersPerHit, hitsRequired, temperatureMin, temperatureMax, 0)));
+        CraftTweakerAPI.apply(new Add(new AetheriumAnvilRecipes.AetheriumAnvilRecipe(in, out, difficulty, embersPerHit, hitsRequired, temperatureMin, temperatureMax, 0)));
     }
 
     @ZenMethod
@@ -56,9 +58,9 @@ public class Anvil
 
     private static class Add implements IAction
     {
-        private AARecipes.AARecipe toAdd;
+        private final AetheriumAnvilRecipes.AetheriumAnvilRecipe toAdd;
 
-        public Add(AARecipes.AARecipe toAdd)
+        public Add(AetheriumAnvilRecipes.AetheriumAnvilRecipe toAdd)
         {
             this.toAdd = toAdd;
         }
@@ -66,13 +68,13 @@ public class Anvil
         @Override
         public void apply()
         {
-            AARecipes.addRecipe(this.toAdd);
+            AetheriumAnvilRecipes.addRecipe(this.toAdd);
         }
 
         @Override
         public String describe()
         {
-            return "Adding anvil recipe for " + this.toAdd.getInput().getDisplayName();
+            return "Adding anvil recipe for " + this.toAdd.getInput().getMatchingStacks()[0].getDisplayName();
         }
     }
 
@@ -85,8 +87,8 @@ public class Anvil
             INPUTOUTPUT
         }
 
-        private ItemStack[] data;
-        private Context context;
+        private final ItemStack[] data;
+        private final Context context;
 
         public Remove(Context context, ItemStack... data)
         {
@@ -97,10 +99,10 @@ public class Anvil
         @Override
         public void apply()
         {
-            Iterator<AARecipes.AARecipe> iterator = AARecipes.recipes.iterator();
+            Iterator<AetheriumAnvilRecipes.AetheriumAnvilRecipe> iterator = AetheriumAnvilRecipes.recipes.iterator();
             while (iterator.hasNext())
             {
-                AARecipes.AARecipe rec = iterator.next();
+                AetheriumAnvilRecipes.AetheriumAnvilRecipe rec = iterator.next();
                 if (this.context == Context.INPUT)
                 {
                     if (RecipeUtils.areItemStacksEqual(rec.getInput(), this.data[0]))

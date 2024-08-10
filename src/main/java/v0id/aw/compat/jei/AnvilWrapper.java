@@ -8,9 +8,10 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+import teamroots.embers.compat.jei.EmbersJEIPlugin;
 import teamroots.embers.register.ItemRegister;
 import v0id.aw.common.item.Geode;
-import v0id.aw.common.recipe.AARecipes;
+import v0id.aw.common.recipe.AetheriumAnvilRecipes;
 
 import java.awt.*;
 import java.util.Collections;
@@ -19,18 +20,18 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 public class AnvilWrapper implements IRecipeWrapper {
-    public final AARecipes.AARecipe recipe;
+    public final AetheriumAnvilRecipes.AetheriumAnvilRecipe recipe;
     public static final Random RAND = new Random();
 
-    public AnvilWrapper(AARecipes.AARecipe recipe) {
+    public AnvilWrapper(AetheriumAnvilRecipes.AetheriumAnvilRecipe recipe) {
         this.recipe = recipe;
     }
 
     @Override
     public void getIngredients(IIngredients iIngredients) {
-        iIngredients.setInput(ItemStack.class, this.recipe.getInput());
-        if (this.recipe instanceof AARecipes.GeodeRecipe) {
-            List<AARecipes.GeodeRecipe.Entry> oreNames = AARecipes.GeodeRecipe.oreDictEntries.get(Geode.getType(this.recipe.getInput()));
+        iIngredients.setInput(ItemStack.class, EmbersJEIPlugin.expandIngredients(this.recipe.getInput()));
+        if (this.recipe instanceof AetheriumAnvilRecipes.GeodeRecipe) {
+            List<AetheriumAnvilRecipes.GeodeRecipe.Entry> oreNames = AetheriumAnvilRecipes.GeodeRecipe.oreDictEntries.get(Geode.getType(this.recipe.getInput().getMatchingStacks()[0]));
             List<ItemStack> ret = oreNames.stream().filter(e -> OreDictionary.doesOreNameExist(e.entry) && !OreDictionary.getOres(e.entry).isEmpty()).map(e -> OreDictionary.getOres(e.entry).get(0)).collect(Collectors.toList());
             iIngredients.setOutputs(ItemStack.class, ret);
         } else {
