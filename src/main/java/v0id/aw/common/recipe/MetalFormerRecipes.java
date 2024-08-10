@@ -2,9 +2,11 @@ package v0id.aw.common.recipe;
 
 import com.google.common.collect.Lists;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.fluids.FluidStack;
 import v0id.aw.lib.RecipeUtils;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,7 +17,7 @@ public class MetalFormerRecipes
 {
     public static final List<MetalFormerRecipe> recipes = Lists.newArrayList();
 
-    public static MetalFormerRecipe addRecipe(FluidStack fsIn, ItemStack in, ItemStack out, int temp)
+    public static MetalFormerRecipe addRecipe(FluidStack fsIn, Ingredient in, ItemStack out, int temp)
     {
         return addRecipe(new MetalFormerRecipe(fsIn, in, out, temp));
     }
@@ -34,11 +36,11 @@ public class MetalFormerRecipes
     public static class MetalFormerRecipe
     {
         private final FluidStack fluidRequirements;
-        private final ItemStack in;
+        private final Ingredient in;
         private final ItemStack out;
         private final int temperature;
 
-        public MetalFormerRecipe(FluidStack fluidRequirements, ItemStack in, ItemStack out, int temperature)
+        public MetalFormerRecipe(FluidStack fluidRequirements, Ingredient in, ItemStack out, int temperature)
         {
             this.fluidRequirements = fluidRequirements;
             this.in = in;
@@ -48,7 +50,7 @@ public class MetalFormerRecipes
 
         public boolean matches(FluidStack stack, ItemStack is, int temp)
         {
-            return temp >= this.temperature && fluidRequirements.isFluidEqual(stack) && fluidRequirements.amount <= stack.amount && RecipeUtils.areItemStacksEqual(is, in);
+            return temp >= this.temperature && fluidRequirements.isFluidEqual(stack) && fluidRequirements.amount <= stack.amount && in.apply(is);
         }
 
         public ItemStack getResult()
@@ -56,7 +58,7 @@ public class MetalFormerRecipes
             return this.out;
         }
 
-        public ItemStack getInput()
+        public Ingredient getInput()
         {
             return this.in;
         }

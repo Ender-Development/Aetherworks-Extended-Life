@@ -3,9 +3,11 @@ package v0id.aw.compat.crafttweaker;
 import crafttweaker.CraftTweakerAPI;
 import crafttweaker.IAction;
 import crafttweaker.annotations.ZenRegister;
+import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.liquid.ILiquidStack;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.fluids.FluidStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
@@ -19,10 +21,10 @@ import java.util.Iterator;
 public class MetalFormer
 {
     @ZenMethod
-    public static void addRecipe(IItemStack input, ILiquidStack fluid, IItemStack output, int temperature)
+    public static void addRecipe(IIngredient input, ILiquidStack fluid, IItemStack output, int temperature)
     {
         FluidStack fs = (FluidStack)fluid.getInternal();
-        ItemStack in = (ItemStack)input.getInternal();
+        Ingredient in = (Ingredient) input.getInternal();
         ItemStack out = (ItemStack)output.getInternal();
         CraftTweakerAPI.apply(new Add(new MetalFormerRecipes.MetalFormerRecipe(fs, in, out, temperature)));
     }
@@ -51,7 +53,7 @@ public class MetalFormer
 
     private static class Add implements IAction
     {
-        private MetalFormerRecipes.MetalFormerRecipe recipe;
+        private final MetalFormerRecipes.MetalFormerRecipe recipe;
 
         public Add(MetalFormerRecipes.MetalFormerRecipe recipe)
         {
@@ -67,7 +69,7 @@ public class MetalFormer
         @Override
         public String describe()
         {
-            return "Adding metal former recipe for " + recipe.getInput().getDisplayName();
+            return "Adding metal former recipe for " + recipe.getResult().getDisplayName();
         }
     }
 
@@ -80,8 +82,8 @@ public class MetalFormer
             INPUTOUTPUT
         }
 
-        private ItemStack[] data;
-        private Context context;
+        private final ItemStack[] data;
+        private final Context context;
 
         public Remove(Context context, ItemStack... data)
         {
@@ -98,7 +100,7 @@ public class MetalFormer
                 MetalFormerRecipes.MetalFormerRecipe rec = iterator.next();
                 if (this.context == Context.INPUT)
                 {
-                    if (RecipeUtils.areItemStacksEqual(rec.getInput(), this.data[0]))
+                    if (RecipeUtils.areItemStacksEqual(this.data[0], rec.getInput()))
                     {
                         iterator.remove();
                     }
