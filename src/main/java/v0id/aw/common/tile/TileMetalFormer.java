@@ -12,6 +12,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import v0id.aw.AetherWorks;
 import v0id.aw.common.block.forge.Component;
+import v0id.aw.common.config.ConfigMachine;
 import v0id.aw.common.recipe.MetalFormerRecipes;
 
 import javax.annotation.Nonnull;
@@ -130,11 +131,11 @@ public class TileMetalFormer extends TileSyncableFluidHandler implements IForgeP
                 {
                     if (forge.getEmberCapability().removeAmount(1,true) > 0)
                     {
-                        forge.getHeatCapability().setHeat(forge.getHeatCapability().getHeatStored() - 0.5F );
+                        forge.getHeatCapability().setHeat(forge.getHeatCapability().getHeatStored() - (float) (ConfigMachine.FORGE.heat_loss * -1));
                         ++this.progress;
                     }
 
-                    if (this.progress >= 400)
+                    if (this.progress >= ConfigMachine.FORGE.progress_time)
                     {
                         this.progress = 0;
                         this.inventory.setStackInSlot(0, recipe.get().getRecipeOutput());
