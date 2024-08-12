@@ -10,14 +10,18 @@ dependencies {
     implementation rfg.deobf("curse.maven:embers-extended-life-936489:" + project.version_embers)
 
     compileOnly "com.azanor.baubles:Baubles:1.12-" + project.version_baubles
-    if (project.debug_baubles.toBoolean()
-            || project.debug_aetherworks.toBoolean()) {
+    if (project.debug_baubles.toBoolean()) {
         runtimeOnly "com.azanor.baubles:Baubles:1.12-" + project.version_baubles
     }
 
     compileOnly rfg.deobf("curse.maven:aetherium-ashen-armor-359467:" + project.version_aetheriumashenarmor)
     if (project.debug_aetheriumashenarmor.toBoolean()) {
         runtimeOnly rfg.deobf("curse.maven:aetherium-ashen-armor-359467:" + project.version_aetheriumashenarmor)
+    }
+
+    compileOnly rfg.deobf("curse.maven:soot-extended-life-982730:" + project.version_soot)
+    if (project.debug_soot.toBoolean()) {
+        runtimeOnly rfg.deobf("curse.maven:soot-extended-life-982730:" + project.version_soot)
     }
 
     runtimeOnly rfg.deobf("curse.maven:the-one-probe-community-edition-885670:" + project.version_top)
