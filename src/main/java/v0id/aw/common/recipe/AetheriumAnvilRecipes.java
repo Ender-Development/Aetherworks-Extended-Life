@@ -59,11 +59,11 @@ public class AetheriumAnvilRecipes
             super(input, output, difficulty, embersPerHit, hitsRequired, temperatureRequiredMin, temperatureRequiredMax, temperatureFluctuation);
         }
 
-        public static void addEntry(Geode.Type type, String oreDict, int i)
+        public static void addEntry(Geode.Type type, String oreDict, int itemweight)
         {
             if (OreDictionary.doesOreNameExist(oreDict))
             {
-                oreDictEntries.put(type, new Entry(oreDict, i));
+                oreDictEntries.put(type, new Entry(oreDict, itemweight));
             }
         }
 
