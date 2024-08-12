@@ -4,6 +4,7 @@ import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.EnumHelper;
 import teamroots.embers.Embers;
+import v0id.aw.common.config.ConfigTool;
 
 /**
  * Created by V0idWa1k3r on 31-May-17.
@@ -92,5 +93,12 @@ public class AWConsts
     public static final String catIDAnvil = "aetherworks.anvil";
     public static final ResourceLocation shovelUI = new ResourceLocation(MODID, "textures/ui/shovel_overlays.png");
 
-    public static final Item.ToolMaterial AETHERIUM = EnumHelper.addToolMaterial("AETHERIUM", 7, 3888, 12, 5, 10);
+    public static final Item.ToolMaterial AETHERIUM = EnumHelper.addToolMaterial(
+            "AETHERIUM",
+            ConfigTool.TOOL.AETHERIUM.harvestLevel,
+            ConfigTool.TOOL.AETHERIUM.durability,
+            ConfigTool.TOOL.AETHERIUM.efficiency,
+            ConfigTool.TOOL.AETHERIUM.damage,
+            ConfigTool.TOOL.AETHERIUM.enchantability
+    );
 }
