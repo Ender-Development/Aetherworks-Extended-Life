@@ -221,7 +221,7 @@ public class Component extends Block {
                     EntityItem item = new EntityItem(worldIn, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, stack.copy());
                     item.setDefaultPickupDelay();
                     worldIn.spawnEntity(item);
-                    handler.extractItem(0, 1, false);
+                    handler.extractItem(0, stack.getCount(), false);
                     return true;
                 }
             }
@@ -249,7 +249,7 @@ public class Component extends Block {
                         EntityItem item = new EntityItem(worldIn, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, stack.copy());
                         item.setDefaultPickupDelay();
                         worldIn.spawnEntity(item);
-                        handler.extractItem(0, 1, false);
+                        handler.extractItem(0, stack.getCount(), false);
                         return true;
                     }
                 }
