@@ -125,6 +125,11 @@ public class AetheriumAnvilRecipes
             return output;
         }
 
+        public ItemStack getResult()
+        {
+            return output;
+        }
+
         public int getDifficulty()
         {
             return difficulty;

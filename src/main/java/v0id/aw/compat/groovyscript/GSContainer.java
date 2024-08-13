@@ -7,7 +7,7 @@ public class GSContainer extends GroovyPropertyContainer {
     public final MetalFormer metalFormer = new MetalFormer();
 
     public GSContainer() {
-        // addProperty(anvil);
+        addProperty(anvil);
         addProperty(metalFormer);
     }
 }
