@@ -14,6 +14,7 @@ import v0id.aw.common.fluid.AWFluids;
 import v0id.aw.common.handler.CommonHandler;
 import v0id.aw.common.item.AWItems;
 import v0id.aw.common.recipe.AWRecipes;
+import v0id.aw.common.research.AWResearch;
 import v0id.aw.common.tile.AWTiles;
 import v0id.aw.common.world.gen.AWGenerator;
 import v0id.aw.lib.AWConsts;
@@ -45,6 +46,7 @@ public class AetherWorks
         listenerList.add(new AWRecipes());
         listenerList.add(new AWNetworkSwitchMode());
         listenerList.add(new AWEntities());
+        listenerList.add(new AWResearch());
         FluidRegistry.enableUniversalBucket();
     }
 
