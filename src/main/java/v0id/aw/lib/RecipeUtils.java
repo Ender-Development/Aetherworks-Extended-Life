@@ -24,4 +24,9 @@ public class RecipeUtils
     {
         return Arrays.stream(ingredient.getMatchingStacks()).anyMatch(is -> areItemStacksEqual(is, item));
     }
+
+    public static boolean areItemStacksEqual(Ingredient l, Ingredient r)
+    {
+        return Arrays.stream(l.getMatchingStacks()).anyMatch(ls -> Arrays.stream(r.getMatchingStacks()).anyMatch(rs -> areItemStacksEqual(ls, rs)));
+    }
 }

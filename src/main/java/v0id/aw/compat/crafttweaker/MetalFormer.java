@@ -21,10 +21,10 @@ import java.util.Iterator;
 public class MetalFormer
 {
     @ZenMethod
-    public static void addRecipe(IIngredient input, ILiquidStack fluid, IItemStack output, int temperature)
+    public static void addRecipe(IItemStack input, ILiquidStack fluid, IItemStack output, int temperature)
     {
         FluidStack fs = (FluidStack)fluid.getInternal();
-        Ingredient in = (Ingredient) input.getInternal();
+        Ingredient in = Ingredient.fromStacks((ItemStack) input.getInternal());
         ItemStack out = (ItemStack)output.getInternal();
         CraftTweakerAPI.apply(new Add(new MetalFormerRecipes.MetalFormerRecipe(fs, in, out, temperature)));
     }
@@ -32,14 +32,14 @@ public class MetalFormer
     @ZenMethod
     public static void removeRecipesByOutput(IItemStack output)
     {
-        ItemStack is = (ItemStack)output.getInternal();
+        Ingredient is = (Ingredient) output.getInternal();
         CraftTweakerAPI.apply(new Remove(Remove.Context.OUTPUT, is));
     }
 
     @ZenMethod
     public static void removeRecipesByInput(IItemStack input)
     {
-        ItemStack is = (ItemStack)input.getInternal();
+        Ingredient is = (Ingredient) input.getInternal();
         CraftTweakerAPI.apply(new Remove(Remove.Context.INPUT, is));
     }
 
@@ -47,8 +47,8 @@ public class MetalFormer
     public static void removeRecipe(IItemStack input, IItemStack output)
     {
         ItemStack out = (ItemStack)output.getInternal();
-        ItemStack in = (ItemStack)input.getInternal();
-        CraftTweakerAPI.apply(new Remove(Remove.Context.INPUTOUTPUT, in, out));
+        Ingredient in = (Ingredient) input.getInternal();
+        CraftTweakerAPI.apply(new Remove(Remove.Context.INPUTOUTPUT, in));
     }
 
     private static class Add implements IAction
@@ -82,13 +82,13 @@ public class MetalFormer
             INPUTOUTPUT
         }
 
-        private final ItemStack[] data;
+        private final Ingredient[] data;
         private final Context context;
 
-        public Remove(Context context, ItemStack... data)
+        public Remove(Context context, Ingredient data)
         {
             this.context = context;
-            this.data = data;
+            this.data = new Ingredient[]{data};
         }
 
         @Override
@@ -128,7 +128,7 @@ public class MetalFormer
         @Override
         public String describe()
         {
-            return "Removing metal former recipe for " + this.data[0].getDisplayName();
+            return "Removing metal former recipe for " + this.data[0].getMatchingStacks()[0].getDisplayName();
         }
     }
 }
