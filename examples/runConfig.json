@@ -1,0 +1,24 @@
+{
+  "packName": "Aetherworks",
+  "packId": "aetherworks_groovyscript",
+  "version": "1.0.0",
+  "debug": true,
+  "classes": {
+    "preInit": []
+  },
+  "loaders": {
+    "preInit": [
+      "preInit/"
+    ],
+    "postInit": [
+      "postInit/embers.groovy",
+      "postInit/aetherworks.groovy"
+    ]
+  },
+  "packmode": {
+    "values": [],
+    "default": "",
+    "_comment": "By default the packmode is not synced with the packmode mod. You can enable integration, but you can no longer change packmode on the fly.",
+    "integratePackmodeMod": false
+  }
+}
