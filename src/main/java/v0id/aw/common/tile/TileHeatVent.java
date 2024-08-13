@@ -55,7 +55,7 @@ public class TileHeatVent extends TileEntity implements IForgePart
             }
             else
             {
-                forge.getHeatCapability().setHeat(forge.getHeatCapability().getHeatStored() - (float) (ConfigMachine.HEAT_VENT.heat_per_tick * -1));
+                forge.getHeatCapability().setHeat(forge.getHeatCapability().getHeatStored() - (float) (ConfigMachine.HEAT_VENT.heat_per_tick));
             }
         }
     }
