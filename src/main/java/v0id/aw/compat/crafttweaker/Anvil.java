@@ -19,9 +19,9 @@ import java.util.Iterator;
 public class Anvil
 {
     @ZenMethod
-    public static void addRecipe(IIngredient input, IItemStack output, int temperatureMin, int temperatureMax, int embersPerHit, int difficulty, int hitsRequired, float temperatureFluctuation)
+    public static void addRecipe(IItemStack input, IItemStack output, int temperatureMin, int temperatureMax, int embersPerHit, int difficulty, int hitsRequired, float temperatureFluctuation)
     {
-        Ingredient in = (Ingredient) input.getInternal();
+        Ingredient in = Ingredient.fromStacks((ItemStack) input.getInternal());
         ItemStack out = (ItemStack)output.getInternal();
         CraftTweakerAPI.apply(new Add(new AetheriumAnvilRecipes.AetheriumAnvilRecipe(in, out, difficulty, embersPerHit, hitsRequired, temperatureMin, temperatureMax, temperatureFluctuation)));
     }
