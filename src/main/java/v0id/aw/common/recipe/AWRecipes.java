@@ -167,7 +167,7 @@ public class AWRecipes implements ILifecycleListener {
                 Lists.newArrayList(Ingredient.fromItem(Item.getItemFromBlock(Blocks.MAGMA)), Ingredient.fromItem(ItemRegister.BLASTING_CORE), Ingredient.fromItem(Item.getItemFromBlock(Blocks.MAGMA)), Ingredient.fromItem(ItemRegister.JET_AUGMENT)),
                 CROSSBOW_LIMBS_QUARTZ));
 
-        if (ConfigMaterial.BRONZE.isNotOff()) {
+        if (OreDictionary.doesOreNameExist("ingotBronze") && !OreDictionary.getOres("ingotBronze").isEmpty() && OreDictionary.doesOreNameExist("plateBronze") && !OreDictionary.getOres("plateBronze").isEmpty()) {
             MetalFormerRecipes.addRecipe(new FluidStack(AWFluids.FLUID_AETHERIUM_GAS, 144), new OreIngredient("ingotBronze"), INGOT_AETHER, 2100);
             MetalFormerRecipes.addRecipe(new FluidStack(AWFluids.FLUID_AETHERIUM_GAS, 144), new OreIngredient("plateBronze"), PLATE_AETHER, 2100);
         } else {
