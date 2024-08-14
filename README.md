@@ -23,10 +23,12 @@ You can download the latest files here on [curseforge](https://curseforge.com/mi
 Current Changes to Aetherworks v1.0.0.3:
 - switched to [RetroFuturaGradle](https://github.com/GTNewHorizons/RetroFuturaGradle)
 - Aetherworks now depends on [Embers UEL](https://curseforge.com/minecraft/mc-mods/embers-extended-life)
+- added native [GroovyScript](https://github.com/CleanroomMC/GroovyScript) support
+- transformed the wiki into it's own chapter in the Ancient Codex
+- added a bunch more config options to all machines
+- added comparator support to the Aetherium Anvil, Metal Former and Forge Core
 
 Planned Changes:
-- native [GroovyScript](https://github.com/CleanroomMC/GroovyScript) support
-- transform the wiki into some kind of in-game documentation
 - [Baubles](https://www.curseforge.com/minecraft/mc-mods/baubles-lts) support
 
 ## [Ender-Development](https://github.com/Ender-Development)
