@@ -8,6 +8,11 @@ import v0id.aw.lib.AWConsts;
 @Config.LangKey("cfg.aetherworks.machine")
 public class ConfigMachine {
 
+    @Config.Name("Anvil")
+    @Config.LangKey("cfg.aetherworks.machine.anvil")
+    @Config.Comment("Options about the Anvil")
+    public static final AnvilCategory ANVIL = new AnvilCategory();
+
     @Config.Name("Forge")
     @Config.LangKey("cfg.aetherworks.machine.forge")
     @Config.Comment("Options about the Forge")
