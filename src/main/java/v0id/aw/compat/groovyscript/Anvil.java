@@ -160,6 +160,7 @@ public class Anvil extends VirtualizedRegistry<AetheriumAnvilRecipes.AetheriumAn
             msg.add(ember_per_hit < 1, "Embers per hit must be greater than 0");
             msg.add(hits_required < 1, "Hits required must be greater than 0");
             msg.add(temperature_fluctuation < 1, "Temperature fluctuation must be greater than 0");
+            msg.add(Arrays.stream(input.get(0).getMatchingStacks()).anyMatch(itemStack -> itemStack.getCount() > 1), "Input must be a single item");
         }
 
         @Override

@@ -101,6 +101,7 @@ public class MetalFormer extends VirtualizedRegistry<MetalFormerRecipes.MetalFor
             validateFluids(msg, 1, 1, 0, 0);
             msg.add(temperature < 1, "Temperature must be greater than 0");
             msg.add(temperature > ConfigMachine.FORGE.heat_capacity, "Temperature must be less than " + ConfigMachine.FORGE.heat_capacity);
+            msg.add(Arrays.stream(input.get(0).getMatchingStacks()).anyMatch(itemStack -> itemStack.getCount() > 1), "Input must be a single item");
         }
 
         @Override
