@@ -8,7 +8,7 @@ import v0id.aw.lib.AWConsts;
 @Config.LangKey("cfg.aetherworks.tool")
 public class ConfigTool {
     @Config.Name("Tool Material Values")
-    @Config.LangKey("cfg.aetherworks.tool")
+    @Config.LangKey("cfg.aetherworks.tool.toolmaterial")
     @Config.Comment("Options about tools")
     public static final ToolCategory TOOL = new ToolCategory();
 }

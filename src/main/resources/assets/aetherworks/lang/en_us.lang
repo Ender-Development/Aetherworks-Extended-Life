@@ -130,6 +130,25 @@ aetherworks.anvil=Aetherium Anvil
 
 aw.enchantment.aetherid=Aetheric %s
 
+# Config
+cfg.aetherworks.machine=Machines
+cfg.aetherworks.machine.tooltip=Options about most machines
+cfg.aetherworks.machine.anvil=Aetherium Anvil
+cfg.aetherworks.machine.forge=Forge
+cfg.aetherworks.machine.heater=Heater
+cfg.aetherworks.machine.cooler=Cooler
+cfg.aetherworks.machine.vent=Heat Vent
+cfg.aetherworks.machine.collector=Aetherium Collector
+cfg.aetherworks.tool=Tools
+cfg.aetherworks.tool.tooltip=Options about various tools
+cfg.aetherworks.tool.toolmaterial=Tool Material Values
+cfg.aetherworks.tool.toolmaterial.aetherium=Aetherium
+cfg.aetherworks.world=Worldgen
+cfg.aetherworks.world.tooltip=Options about the world generation
+cfg.aetherworks.world.ore=Ore Generation
+cfg.aetherworks.world.ore.aether_ore=Aetherium Ore
+
+# Research
 embers.research.aetherworks=AetherWorks
 embers.research.page.aetherium_ore=Aetherium Ore
 embers.research.page.aetherium_ore.title=Aetherium Ore

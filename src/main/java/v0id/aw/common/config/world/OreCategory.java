@@ -5,6 +5,7 @@ import net.minecraftforge.common.config.Config;
 public class OreCategory {
     @Config.RequiresMcRestart
     @Config.Name("Aether Ore")
+    @Config.LangKey("cfg.aetherworks.world.ore.aether_ore")
     @Config.Comment("Generation settings")
     public final Ore oreAether = new Ore(4, 80, 128, 4, -1, 1);
 

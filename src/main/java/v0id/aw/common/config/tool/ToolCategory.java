@@ -4,7 +4,7 @@ import net.minecraftforge.common.config.Config;
 
 public class ToolCategory {
     @Config.Name("Aetherium")
-    @Config.LangKey("cfg.aetherworks.tool.aetherium")
+    @Config.LangKey("cfg.aetherworks.tool.toolmaterial.aetherium")
     @Config.Comment("Options for the Aetherium Tools")
     public final Tool AETHERIUM = new Tool(7, 3888, 12, 5, 10);
 
