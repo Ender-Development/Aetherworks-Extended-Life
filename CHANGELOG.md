@@ -2,6 +2,20 @@
 
 A dwarven magic addon
 
+## v1.2.1 - CraftTweaker fix
+### Changes
+- Aetherium Ingot and Plate recipes now check for the Bronze OreDict instead of the Embers Bronze variant
+- added Comparator support to the Aetherium Anvil, Metal Former and Forge Core
+  - when the Anvil or Metal Former contain an item, the Comparator will output a signal strength equal to the amount of items in the inventory
+  - when the Anvil has a recipe, the Comparator will output a signal strength of 15 whenever it needs to be smacked with a hammer
+  - the Forge Core will output a signal strength equal to its current heat level
+- added an entry in the Ancient Codex for the newly added Comparator support
+
+### Bugfixes
+- added missing localization entries for all config entries
+- fixed broken CraftTweaker methods
+- fixed broken mcmeta files (fixes fluid animation)
+
 ## v1.2.0 - Config Overhaul
 ### Changes
 - restructured all config entries
