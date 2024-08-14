@@ -290,14 +290,22 @@ public class Component extends Block {
         if (tile instanceof TileMetalFormer) {
             TileMetalFormer former = (TileMetalFormer) tile;
             IItemHandler capability = former.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
-            return capability != null && capability.getStackInSlot(0).isEmpty() ? 0 : 1;
+            if (capability != null && !capability.getStackInSlot(0).isEmpty()) {
+                ItemStack stack = capability.getStackInSlot(0);
+                return (int) (stack.getCount() / (float) stack.getMaxStackSize() * 15);
+            }
+            return 0;
         }
 
         if (tile instanceof TileAnvil) {
             TileAnvil anvil = (TileAnvil) tile;
             if (!anvil.hasRecipe.isPresent()) {
                 IItemHandler capability = anvil.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
-                return capability != null && capability.getStackInSlot(0).isEmpty() ? 0 : 1;
+                if (capability != null && !capability.getStackInSlot(0).isEmpty()) {
+                    ItemStack stack = capability.getStackInSlot(0);
+                    return (int) (stack.getCount() / (float) stack.getMaxStackSize() * 15);
+                }
+                return 0;
             }
             return anvil.hitTimeout > 0 ? 15 : 0;
         }
@@ -305,7 +313,7 @@ public class Component extends Block {
         if (tile instanceof TileForge) {
             TileForge forge = (TileForge) tile;
             IHeatCapability cap = forge.getHeatCapability();
-            return (int) (cap.getHeatStored() / cap.getHeatCapacity() * 16);
+            return (int) (cap.getHeatStored() / cap.getHeatCapacity() * 15);
         }
         return 0;
     }
