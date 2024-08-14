@@ -125,4 +125,27 @@ public class HeatDial extends Block implements IDial
 
     @Override
     public void updateTEData(World world, IBlockState state, BlockPos pos){}
+
+    @Override
+    public boolean hasComparatorInputOverride(IBlockState state)
+    {
+        return true;
+    }
+
+    @Override
+    public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
+    {
+        TileEntity tile = world.getTileEntity(pos.offset(state.getValue(Component.FACING_PROPERTY).getOpposite()));
+        if (tile != null && tile.hasCapability(IHeatCapability.Holder.cap, state.getValue(Component.FACING_PROPERTY)))
+        {
+            IHeatCapability cap = tile.getCapability(IHeatCapability.Holder.cap, state.getValue(Component.FACING_PROPERTY));
+            if (cap != null)
+            {
+                return (int) (cap.getHeatStored() / cap.getHeatCapacity() * 16);
+            }
+        }
+
+        return 0;
+    }
+
 }
