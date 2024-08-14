@@ -32,14 +32,14 @@ public class MetalFormer
     @ZenMethod
     public static void removeRecipesByOutput(IItemStack output)
     {
-        Ingredient is = (Ingredient) output.getInternal();
+        Ingredient is = Ingredient.fromStacks((ItemStack) output.getInternal());
         CraftTweakerAPI.apply(new Remove(Remove.Context.OUTPUT, is));
     }
 
     @ZenMethod
     public static void removeRecipesByInput(IItemStack input)
     {
-        Ingredient is = (Ingredient) input.getInternal();
+        Ingredient is = Ingredient.fromStacks((ItemStack) input.getInternal());
         CraftTweakerAPI.apply(new Remove(Remove.Context.INPUT, is));
     }
 
@@ -47,7 +47,7 @@ public class MetalFormer
     public static void removeRecipe(IItemStack input, IItemStack output)
     {
         ItemStack out = (ItemStack)output.getInternal();
-        Ingredient in = (Ingredient) input.getInternal();
+        Ingredient in = Ingredient.fromStacks((ItemStack) input.getInternal());
         CraftTweakerAPI.apply(new Remove(Remove.Context.INPUTOUTPUT, in));
     }
 
