@@ -10,6 +10,6 @@ public class AetherworksLinkGenerator extends BasicLinkGenerator {
     }
     @Override
     protected String domain() {
-        return "https://github.com/Ender-Development/Aetherworks-Extended-Life";
+        return "https://github.com/Ender-Development/Aetherworks-Extended-Life/";
     }
 }
