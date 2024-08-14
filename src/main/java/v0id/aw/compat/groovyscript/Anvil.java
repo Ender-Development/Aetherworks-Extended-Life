@@ -16,7 +16,10 @@ import java.util.Arrays;
 
 @RegistryDescription(linkGenerator = AWConsts.MODID)
 public class Anvil extends VirtualizedRegistry<AetheriumAnvilRecipes.AetheriumAnvilRecipe> {
-    @RecipeBuilderDescription(example = @Example(".input(item('minecraft:iron_ingot')).output(item('minecraft:iron_nugget') * 9).difficulty(2).embersPerHit(100).hits(10).temperature(1900, 2500).temperatureFluctuation(10)"))
+    @RecipeBuilderDescription(example = {
+            @Example(".input(item('minecraft:iron_ingot')).output(item('minecraft:iron_nugget') * 9).difficulty(2).embersPerHit(100).hits(10).temperature(1900, 2500, 10)"),
+            @Example(".input(ore('plateGold')).output(item('minecraft:gold_ingot') * 9).difficulty(4).embersPerHit(150).hits(5).minTemperature(2000).maxTemperature(2100).temperatureFluctuation(50)")
+    })
     public RecipeBuilder recipeBuilder() {
         return new RecipeBuilder();
     }
@@ -43,7 +46,7 @@ public class Anvil extends VirtualizedRegistry<AetheriumAnvilRecipes.AetheriumAn
         return false;
     }
 
-    @MethodDescription(type = MethodDescription.Type.REMOVAL, example = @Example("item('minecraft:diamond')"))
+    @MethodDescription(type = MethodDescription.Type.REMOVAL, example = @Example("item('aetherworks:item_resource', 9)"))
     public boolean removeByInput(IIngredient input) {
         return AetheriumAnvilRecipes.recipes.removeIf(r -> {
             if (Arrays.stream(r.getInput().getMatchingStacks()).anyMatch(input)) {
@@ -54,7 +57,7 @@ public class Anvil extends VirtualizedRegistry<AetheriumAnvilRecipes.AetheriumAn
         });
     }
 
-    @MethodDescription(type = MethodDescription.Type.REMOVAL, example = @Example("item('aetherworks:item_resource', 4)"))
+    @MethodDescription(type = MethodDescription.Type.REMOVAL, example = @Example("item('aetherworks:item_resource', 7)"))
     public boolean removeByOutput(IIngredient output) {
         return AetheriumAnvilRecipes.recipes.removeIf(r -> {
             if (output.test(r.getResult())) {
@@ -102,7 +105,7 @@ public class Anvil extends VirtualizedRegistry<AetheriumAnvilRecipes.AetheriumAn
             this.difficulty = difficulty;
             return this;
         }
-        @RecipeBuilderMethodDescription(field = "embers_per_hit")
+        @RecipeBuilderMethodDescription(field = "ember_per_hit")
         public RecipeBuilder embersPerHit(int embers) {
             this.ember_per_hit = embers;
             return this;
@@ -133,6 +136,13 @@ public class Anvil extends VirtualizedRegistry<AetheriumAnvilRecipes.AetheriumAn
             this.temperature_fluctuation = temp_fluc;
             return this;
         }
+        @RecipeBuilderMethodDescription(field = {"temperature_min","temperature_max","temperature_fluctuation"})
+        public RecipeBuilder temperature(int temp_min, int temp_max, int fluc) {
+            this.temperature_min = temp_min;
+            this.temperature_max = temp_max;
+            this.temperature_fluctuation = fluc;
+            return this;
+        }
 
         @Override
         public String getErrorMsg() {
@@ -147,6 +157,9 @@ public class Anvil extends VirtualizedRegistry<AetheriumAnvilRecipes.AetheriumAn
             msg.add(temperature_max > ConfigMachine.FORGE.heat_capacity, "Maximum Temperature must be less than " + ConfigMachine.FORGE.heat_capacity);
             msg.add(temperature_max <= temperature_min, "Minimum temperature must be less than or equal to maximum temperature");
             msg.add(difficulty < 1 || difficulty > 10, "Difficulty must be between 1 and 10");
+            msg.add(ember_per_hit < 1, "Embers per hit must be greater than 0");
+            msg.add(hits_required < 1, "Hits required must be greater than 0");
+            msg.add(temperature_fluctuation < 1, "Temperature fluctuation must be greater than 0");
         }
 
         @Override

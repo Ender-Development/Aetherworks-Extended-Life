@@ -9,6 +9,7 @@ import com.cleanroommc.groovyscript.helper.SimpleObjectStream;
 import com.cleanroommc.groovyscript.helper.recipe.AbstractRecipeBuilder;
 import com.cleanroommc.groovyscript.registry.VirtualizedRegistry;
 import groovyjarjarantlr4.v4.runtime.misc.Nullable;
+import v0id.aw.common.config.ConfigMachine;
 import v0id.aw.common.recipe.MetalFormerRecipes;
 import v0id.aw.lib.AWConsts;
 
@@ -80,7 +81,7 @@ public class MetalFormer extends VirtualizedRegistry<MetalFormerRecipes.MetalFor
     @Property(property = "fluidInput", valid = @Comp("1"))
     @Property(property = "output", valid = @Comp("1"))
     public static class RecipeBuilder extends AbstractRecipeBuilder<MetalFormerRecipes.MetalFormerRecipe> {
-        @Property(defaultValue = "1", valid = @Comp(value = "1", type = Comp.Type.GT), value = "groovyscript.wiki.aetherworks.temperature.value")
+        @Property(defaultValue = "1", valid = @Comp(value = "1", type = Comp.Type.GTE), value = "groovyscript.wiki.aetherworks.temperature.value")
         private int temperature = 1;
 
         @RecipeBuilderMethodDescription(field = "temperature")
@@ -99,6 +100,7 @@ public class MetalFormer extends VirtualizedRegistry<MetalFormerRecipes.MetalFor
             validateItems(msg,1,1,1,1);
             validateFluids(msg, 1, 1, 0, 0);
             msg.add(temperature < 1, "Temperature must be greater than 0");
+            msg.add(temperature > ConfigMachine.FORGE.heat_capacity, "Temperature must be less than " + ConfigMachine.FORGE.heat_capacity);
         }
 
         @Override

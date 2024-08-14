@@ -130,7 +130,7 @@ aetherworks.anvil=Aetherium Anvil
 
 aw.enchantment.aetherid=Aetheric %s
 
-embers.research.aetherworks=The Aetherium Forge
+embers.research.aetherworks=AetherWorks
 embers.research.page.aetherium_ore=Aetherium Ore
 embers.research.page.aetherium_ore.title=Aetherium Ore
 embers.research.page.aetherium_ore.desc=The first thing you will need in order to begin playing with the mod is Aetherium Ore itself. Formed high in the mountains it can be a challenge to find. Thankfully it emits light to help find it. Upon mining it with a diamond pickaxe it will drop Aetherium Shards.
@@ -219,3 +219,16 @@ embers.research.page.crossbow_raging_volcano.title=Crossbow Of The Raging Volcan
 embers.research.page.crossbow_raging_volcano.desc=A crossbow is a powerful ranged weapon. It doesn't need to be pulled like a bow. It will instead seek an arrow in your inventory and auto-load it. Loading an arrow takes 1 second. Any arrow can be loaded (normal/ tipped/ spectral/ modded). This crossbow fires a volley of 3-8 arrows. Only one of those arrows can be picked up. Additionally this crossbow spits molten magma every time it is fired.
 embers.research.page.crossbow_raging_volcano_1.title=Crossbow Of The Raging Volcano
 embers.research.page.crossbow_raging_volcano_1.desc=Molten magma is a projectile that only exists for half a second but deals some (2 hearts) damage on contact and sets targets ablaze for 15 seconds.
+
+# GroovyScript Wiki
+groovyscript.wiki.aetherworks.anvil.title=Aetherium Anvil
+groovyscript.wiki.aetherworks.anvil.description=Converts an input item into an output item using the Aetherium Forge Anvil. The anvil requires a specific temperature range and a number of hits to process the item. The anvil can fail up to 3 times before the item is destroyed.
+groovyscript.wiki.aetherworks.difficulty.value=Sets the value of the difficulty
+groovyscript.wiki.aetherworks.ember_per_hit.value=Sets the value how much ember is used per hit
+groovyscript.wiki.aetherworks.hits_required.value=Sets the value how many hits are required to process the item
+groovyscript.wiki.aetherworks.temperature_max.value=Sets the maximum temperature the anvil can have
+groovyscript.wiki.aetherworks.temperature_min.value=Sets the minimum temperature the anvil can have
+groovyscript.wiki.aetherworks.temperature_fluctuation.value=Sets the value how much the temperature can fluctuate, while processing the item
+groovyscript.wiki.aetherworks.metal_former.title=Metal Former
+groovyscript.wiki.aetherworks.metal_former.description=Converts an input item in addition of an input fluid into an output item using the Aetherium Forge Metal Former.
+groovyscript.wiki.aetherworks.temperature.value=Sets the temperature the metal former requires at minimum to process the item
