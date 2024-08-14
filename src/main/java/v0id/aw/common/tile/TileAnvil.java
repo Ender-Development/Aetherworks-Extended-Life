@@ -13,6 +13,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import v0id.aw.AetherWorks;
 import v0id.aw.common.block.forge.Component;
+import v0id.aw.common.config.ConfigMachine;
 import v0id.aw.common.recipe.AetheriumAnvilRecipes;
 
 import javax.annotation.Nonnull;
@@ -23,14 +24,12 @@ import java.util.Random;
 /**
  * Created by V0idWa1k3r on 02-Jun-17.
  */
-public class TileAnvil extends TileEntity implements IForgePart, ISyncable
-{
-    private final ItemStackHandler inventory = new ItemStackHandler(1){
-        protected void onContentsChanged(int slot)
-        {
-            if (!TileAnvil.this.world.isRemote)
-            {
+public class TileAnvil extends TileEntity implements IForgePart, ISyncable {
+    private final ItemStackHandler inventory = new ItemStackHandler(1) {
+        protected void onContentsChanged(int slot) {
+            if (!TileAnvil.this.world.isRemote) {
                 TileAnvil.this.sync();
+                world.notifyNeighborsOfStateChange(TileAnvil.this.getPos(), TileAnvil.this.getBlockType(), true);
             }
         }
     };
@@ -43,8 +42,7 @@ public class TileAnvil extends TileEntity implements IForgePart, ISyncable
     public Optional<AetheriumAnvilRecipes.AetheriumAnvilRecipe> hasRecipe = Optional.empty();
 
     @Override
-    public void readFromNBT(NBTTagCompound tag)
-    {
+    public void readFromNBT(NBTTagCompound tag) {
         super.readFromNBT(tag);
         this.inventory.deserializeNBT(tag.getCompoundTag("capInventory"));
         this.hitTimeout = tag.getInteger("hitTimeout");
@@ -54,8 +52,7 @@ public class TileAnvil extends TileEntity implements IForgePart, ISyncable
     }
 
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound tag)
-    {
+    public NBTTagCompound writeToNBT(NBTTagCompound tag) {
         tag = super.writeToNBT(tag);
         tag.setTag("capInventory", this.inventory.serializeNBT());
         tag.setInteger("hitTimeout", this.hitTimeout);
@@ -66,23 +63,19 @@ public class TileAnvil extends TileEntity implements IForgePart, ISyncable
     }
 
     @Override
-    public NBTTagCompound getUpdateTag()
-    {
+    public NBTTagCompound getUpdateTag() {
         return this.writeToNBT(new NBTTagCompound());
     }
 
     @Nullable
     @Override
-    public SPacketUpdateTileEntity getUpdatePacket()
-    {
+    public SPacketUpdateTileEntity getUpdatePacket() {
         return new SPacketUpdateTileEntity(this.getPos(), 0, this.getUpdateTag());
     }
 
     @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
-    {
-        if (pkt.getNbtCompound().getInteger("hitTimeout") != this.hitTimeout && this.hitTimeout == 0 && this.hasWorld())
-        {
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
+        if (pkt.getNbtCompound().getInteger("hitTimeout") != this.hitTimeout && this.hitTimeout == 0 && this.hasWorld()) {
             this.getWorld().playSound(AetherWorks.proxy.getClientPlayer(), this.getPos(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.BLOCKS, 1, 1);
         }
 
@@ -90,41 +83,34 @@ public class TileAnvil extends TileEntity implements IForgePart, ISyncable
     }
 
     @Override
-    public void handleUpdateTag(NBTTagCompound tag)
-    {
+    public void handleUpdateTag(NBTTagCompound tag) {
         this.readFromNBT(tag);
     }
 
     @Override
-    public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing)
-    {
+    public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
         return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
     }
 
     @Nullable
     @Override
-    public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing)
-    {
+    public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
         return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(this.inventory) : super.getCapability(capability, facing);
     }
 
     @Override
-    public void onForgeTick(IForge forge)
-    {
-        global: if (!this.inventory.getStackInSlot(0).isEmpty())
-        {
+    public void onForgeTick(IForge forge) {
+        global:
+        if (!this.inventory.getStackInSlot(0).isEmpty()) {
             Optional<AetheriumAnvilRecipes.AetheriumAnvilRecipe> recipe = AetheriumAnvilRecipes.findMatchingRecipe(this.inventory.getStackInSlot(0), (int) forge.getHeatCapability().getHeatStored());
             this.hasRecipe = recipe;
-            if (recipe.isPresent())
-            {
-                if (this.getWorld().isRemote)
-                {
+            if (recipe.isPresent()) {
+                if (this.getWorld().isRemote) {
                     Random rand = this.getWorld().rand;
                     AetherWorks.proxy.spawnParticleGlow(this.getWorld(), this.getPos().getX() + rand.nextFloat(), this.getPos().getY() + 0.1F, this.getPos().getZ() + rand.nextFloat(), 0, 0.01F, 0, 0, 0.72F, 0.95F, 1, 30);
                 }
 
-                if (this.progress == recipe.get().getHitsRequired() && !this.world.isRemote)
-                {
+                if (this.progress == recipe.get().getHitsRequired() && !this.world.isRemote) {
                     this.inventory.setStackInSlot(0, recipe.get().getOutput(this.world));
                     this.hitTimeout = 0;
                     this.mistakes = 0;
@@ -134,12 +120,9 @@ public class TileAnvil extends TileEntity implements IForgePart, ISyncable
                     break global;
                 }
 
-                if (this.hitTimeout > 0)
-                {
-                    if (--this.hitTimeout == 0)
-                    {
-                        if (!this.world.isRemote)
-                        {
+                if (this.hitTimeout > 0) {
+                    if (--this.hitTimeout == 0) {
+                        if (!this.world.isRemote) {
                             this.mkMistake();
                         }
 
@@ -147,34 +130,27 @@ public class TileAnvil extends TileEntity implements IForgePart, ISyncable
                     }
                 }
 
-                if (!this.world.isRemote)
-                {
-                    if (this.progressPrev != this.progress && this.progressPrev != -1)
-                    {
-                        if (forge.getEmberCapability().removeAmount(recipe.get().getEmbersPerHit(), true) != recipe.get().getEmbersPerHit())
-                        {
+                if (!this.world.isRemote) {
+                    if (this.progressPrev != this.progress && this.progressPrev != -1) {
+                        if (forge.getEmberCapability().removeAmount(recipe.get().getEmbersPerHit(), true) != recipe.get().getEmbersPerHit()) {
                             this.mkMistake();
                         }
                     }
 
-                    if (this.heatFluctuationsMemory != 0)
-                    {
+                    if (this.heatFluctuationsMemory != 0) {
                         forge.getHeatCapability().setHeat(forge.getHeatCapability().getHeatStored() + this.heatFluctuationsMemory);
                         this.heatFluctuationsMemory = 0;
                     }
 
-                    if (this.hitTimeout == 0)
-                    {
-                        if (this.world.rand.nextFloat() < 0.01F + (float)recipe.get().getDifficulty() / 100)
-                        {
+                    if (this.hitTimeout == 0) {
+                        if (this.world.rand.nextFloat() < 0.01F + (float) recipe.get().getDifficulty() / 100) {
                             this.hitTimeout = Math.max(10, 100 - recipe.get().getDifficulty() * 10);
+                            world.notifyNeighborsOfStateChange(this.getPos(), this.getBlockType(), true);
                             this.sync();
                         }
                     }
                 }
-            }
-            else
-            {
+            } else {
                 this.hitTimeout = 0;
                 this.mistakes = 0;
                 this.heatFluctuationsMemory = 0;
@@ -186,11 +162,9 @@ public class TileAnvil extends TileEntity implements IForgePart, ISyncable
         this.progressPrev = progress;
     }
 
-    private void mkMistake()
-    {
+    private void mkMistake() {
         this.world.playSound(null, this.getPos(), SoundEvents.BLOCK_ANVIL_DESTROY, SoundCategory.PLAYERS, 1, 1);
-        if (++this.mistakes == 3)
-        {
+        if (++this.mistakes == ConfigMachine.ANVIL.max_mistakes) {
             this.inventory.setStackInSlot(0, ItemStack.EMPTY);
             this.hitTimeout = 0;
             this.mistakes = 0;
@@ -201,16 +175,11 @@ public class TileAnvil extends TileEntity implements IForgePart, ISyncable
         this.sync();
     }
 
-    public void activate()
-    {
-        if (this.hasRecipe.isPresent())
-        {
-            if (this.hitTimeout > 0)
-            {
-                if (!this.world.isRemote)
-                {
-                    if (this.progress < this.hasRecipe.get().getHitsRequired() - 1)
-                    {
+    public void activate() {
+        if (this.hasRecipe.isPresent()) {
+            if (this.hitTimeout > 0) {
+                if (!this.world.isRemote) {
+                    if (this.progress < this.hasRecipe.get().getHitsRequired() - 1) {
                         this.world.playSound(null, this.getPos(), SoundEvents.BLOCK_ANVIL_USE, SoundCategory.PLAYERS, 1, 1);
                     }
 
@@ -219,37 +188,31 @@ public class TileAnvil extends TileEntity implements IForgePart, ISyncable
                     this.heatFluctuationsMemory += this.hasRecipe.get().getTemperatureFluctuation() * (this.world.rand.nextBoolean() ? -1 : 1);
                     this.sync();
                 }
-            }
-            else
-            {
+            } else {
                 this.mkMistake();
             }
         }
     }
 
     @Override
-    public Component.Type getComponentType()
-    {
+    public Component.Type getComponentType() {
         return Component.Type.ANVIL;
     }
 
     @Override
-    public TileEntity getOwner()
-    {
+    public TileEntity getOwner() {
         return this;
     }
 
     private boolean isDirty;
 
     @Override
-    public boolean needsSync()
-    {
+    public boolean needsSync() {
         return this.isDirty;
     }
 
     @Override
-    public void setNeedsSync(boolean b)
-    {
+    public void setNeedsSync(boolean b) {
         this.isDirty = b;
     }
 }

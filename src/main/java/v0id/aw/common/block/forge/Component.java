@@ -272,14 +272,36 @@ public class Component extends Block {
 
     @Override
     public int getWeakPower(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) {
-        if (state.getValue(TYPE_PROPERTY) == Type.FORGE) {
-            if (ConfigMachine.FORGE.old_redstone_behavior) {
-                return ((TileForge) world.getTileEntity(pos)).lightValueIndex;
-            } else {
-                IHeatCapability heatCapability = ((TileForge) world.getTileEntity(pos)).getHeatCapability();
-                return (int) (heatCapability.getHeatStored() / heatCapability.getHeatCapacity() * 16);
-            }
+        if (state.getValue(TYPE_PROPERTY) == Type.FORGE && ConfigMachine.FORGE.old_redstone_behavior) {
+            TileForge forge = (TileForge) world.getTileEntity(pos);
+            return forge != null ? forge.lightValueIndex : 0;
         }
+        return 0;
+    }
+
+    @Override
+    public boolean hasComparatorInputOverride(IBlockState state) {
+        return state.getValue(TYPE_PROPERTY) == Type.METAL_FORMER || state.getValue(TYPE_PROPERTY) == Type.ANVIL;
+    }
+
+    @Override
+    public int getComparatorInputOverride(IBlockState blockState, World worldIn, BlockPos pos) {
+        TileEntity tile = worldIn.getTileEntity(pos);
+        if (tile instanceof TileMetalFormer) {
+            TileMetalFormer former = (TileMetalFormer) tile;
+            IItemHandler capability = former.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
+            return capability != null && capability.getStackInSlot(0).isEmpty() ? 0 : 1;
+        }
+
+        if (tile instanceof TileAnvil) {
+            TileAnvil anvil = (TileAnvil) tile;
+            if (!anvil.hasRecipe.isPresent()) {
+                IItemHandler capability = anvil.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
+                return capability != null && capability.getStackInSlot(0).isEmpty() ? 0 : 1;
+            }
+            return anvil.hitTimeout > 0 ? 15 : 0;
+        }
+
         return 0;
     }
 
@@ -290,7 +312,18 @@ public class Component extends Block {
 
     @Override
     public boolean canConnectRedstone(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) {
-        return true;
+        switch (state.getValue(TYPE_PROPERTY)) {
+            case COOLER:
+            case HEATER:
+            case HEAT_VENT:
+            case FORGE: {
+                return true;
+            }
+
+            default: {
+                return false;
+            }
+        }
     }
 
     @Override
