@@ -47,6 +47,7 @@ public class TileForge extends TileEntity implements ISyncable, IForge, ITickabl
             if (!eq && !TileForge.this.isRemote())
             {
                 TileForge.this.sync();
+                world.notifyNeighborsOfStateChange(getPos(), getBlockType(), false);
             }
         }
     };

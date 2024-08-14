@@ -281,7 +281,7 @@ public class Component extends Block {
 
     @Override
     public boolean hasComparatorInputOverride(IBlockState state) {
-        return state.getValue(TYPE_PROPERTY) == Type.METAL_FORMER || state.getValue(TYPE_PROPERTY) == Type.ANVIL;
+        return state.getValue(TYPE_PROPERTY) == Type.METAL_FORMER || state.getValue(TYPE_PROPERTY) == Type.ANVIL || state.getValue(TYPE_PROPERTY) == Type.FORGE;
     }
 
     @Override
@@ -302,6 +302,11 @@ public class Component extends Block {
             return anvil.hitTimeout > 0 ? 15 : 0;
         }
 
+        if (tile instanceof TileForge) {
+            TileForge forge = (TileForge) tile;
+            IHeatCapability cap = forge.getHeatCapability();
+            return (int) (cap.getHeatStored() / cap.getHeatCapacity() * 16);
+        }
         return 0;
     }
 
@@ -315,10 +320,11 @@ public class Component extends Block {
         switch (state.getValue(TYPE_PROPERTY)) {
             case COOLER:
             case HEATER:
-            case HEAT_VENT:
-            case FORGE: {
+            case HEAT_VENT: {
                 return true;
             }
+            case FORGE:
+                return ConfigMachine.FORGE.old_redstone_behavior;
 
             default: {
                 return false;
