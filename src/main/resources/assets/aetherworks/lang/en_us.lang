@@ -238,6 +238,11 @@ embers.research.page.crossbow_raging_volcano.title=Crossbow Of The Raging Volcan
 embers.research.page.crossbow_raging_volcano.desc=A crossbow is a powerful ranged weapon. It doesn't need to be pulled like a bow. It will instead seek an arrow in your inventory and auto-load it. Loading an arrow takes 1 second. Any arrow can be loaded (normal/ tipped/ spectral/ modded). This crossbow fires a volley of 3-8 arrows. Only one of those arrows can be picked up. Additionally this crossbow spits molten magma every time it is fired.
 embers.research.page.crossbow_raging_volcano_1.title=Crossbow Of The Raging Volcano
 embers.research.page.crossbow_raging_volcano_1.desc=Molten magma is a projectile that only exists for half a second but deals some (2 hearts) damage on contact and sets targets ablaze for 15 seconds.
+embers.research.page.redstone_control_forge=Redstone Control
+embers.research.page.redstone_control_forge.title=Redstone Control
+embers.research.page.redstone_control_forge.desc=Placing a Redstone Comparator next to a Forge Core will allow you to monitor its heat. The comparator will output a signal strength based on the current heat of the forge.
+embers.research.page.redstone_control_anvil.desc=Placing a Redstone Comparator next to an Aetherium Anvil will allow you to read its inventory and output a signal strength equal to the amount of items in the inventory. While the Anvil has a valid recipe the comparator will output a signal strength of 15 if it needs to be smacked with a hammer.
+embers.research.page.redstone_control_metalformer.desc=Placing a Redstone Comparator next to a Metal Former will allow you to read its inventory and output a signal strength equal to the amount of items in the inventory.
 
 # GroovyScript Wiki
 groovyscript.wiki.aetherworks.anvil.title=Aetherium Anvil
