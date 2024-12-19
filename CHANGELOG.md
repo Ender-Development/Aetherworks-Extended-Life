@@ -2,6 +2,13 @@
 
 A dwarven magic addon
 
+## v1.2.2 - Recipe fix
+### Changes
+- updated Embers dependency
+
+### Bugfixes
+- fixed the focus crystal recipe
+
 ## v1.2.1 - CraftTweaker fix
 ### Changes
 - Aetherium Ingot and Plate recipes now check for the Bronze OreDict instead of the Embers Bronze variant

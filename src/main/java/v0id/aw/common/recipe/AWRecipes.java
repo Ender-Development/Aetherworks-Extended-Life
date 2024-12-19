@@ -72,7 +72,7 @@ public class AWRecipes implements ILifecycleListener {
         ItemStack CROSSBOW_LIMBS_MAGMA = new ItemStack(AWItems.RESOURCE, 1, 29);
         ItemStack CROWN = new ItemStack(AWItems.CROWN, 1, 0);
 
-        RecipeRegistry.stampingRecipes.add(new ItemStampingRecipe(Ingredient.fromItem(ItemRegister.SHARD_EMBER), new FluidStack(FluidRegistry.WATER, 1000), Ingredient.fromItem(ItemRegister.STAMP_FLAT), FOCUS_CRYSTAL));
+        RecipeRegistry.stampingRecipes.add(new ItemStampingRecipe(Ingredient.fromItem(ItemRegister.SHARD_EMBER), new FluidStack(FluidRegistry.WATER, 1000), Ingredient.fromItem(ItemRegister.STAMP_PLATE), FOCUS_CRYSTAL));
         RecipeRegistry.stampingRecipes.add(new ItemStampingRecipe(Ingredient.EMPTY, new FluidStack(AWFluids.FLUID_AETHERIUM_GAS, 16), Ingredient.fromItem(ItemRegister.STAMP_FLAT), AETHER_SHARD));
 
         RecipeRegistry.mixingRecipes.add(new FluidMixingRecipe(new FluidStack[]{new FluidStack(AWFluids.FLUID_IMPURE_AETHERIUM_GAS, 8), new FluidStack(FluidRegister.FLUID_MOLTEN_ELECTRUM, 8)}, new FluidStack(AWFluids.FLUID_AETHERIUM_GAS, 16)));
