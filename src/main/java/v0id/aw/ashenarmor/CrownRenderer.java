@@ -55,7 +55,7 @@ public class CrownRenderer implements LayerRenderer<EntityPlayer> {
 
     @Override
     public boolean shouldCombineTextures() {
-        // TODO Auto-generated method stub
+        // Auto-generated method stub
         return false;
     }
 

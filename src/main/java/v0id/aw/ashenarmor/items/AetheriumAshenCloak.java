@@ -45,7 +45,6 @@ public class AetheriumAshenCloak extends ArmorBase implements IInflictorGemHolde
     @SideOnly(Side.CLIENT)
     @Override
     public ModelBiped getArmorModel(EntityLivingBase living, ItemStack stack, EntityEquipmentSlot slot, ModelBiped _default) {
-        //return new ModelAshenCloak(slot);
         return new ModelAshenArmor(slot);
     }
 
@@ -97,7 +96,7 @@ public class AetheriumAshenCloak extends ArmorBase implements IInflictorGemHolde
     }
 
     @Override
-    public ItemStack[] getAttachedGems(ItemStack holder) { //Potentially default???
+    public ItemStack[] getAttachedGems(ItemStack holder) {
         ItemStack[] stacks = new ItemStack[getGemSlots(holder)];
         for (int i = 1; i <= stacks.length; i++) {
             if (holder.hasTagCompound()) {
@@ -131,8 +130,7 @@ public class AetheriumAshenCloak extends ArmorBase implements IInflictorGemHolde
     }
 
     @Override
-    public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage,
-                                         int slot) {
+    public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage, int slot) {
         ArmorProperties prop = new ArmorProperties(0, 0, Integer.MAX_VALUE);
         if (!isBroken(armor)) {
             prop.Armor = damageReduceAmount;
@@ -167,12 +165,9 @@ public class AetheriumAshenCloak extends ArmorBase implements IInflictorGemHolde
                 isProtectiveCloakPiece(arg0.getItemStackFromSlot(EntityEquipmentSlot.LEGS)) &&
                 isProtectiveCloakPiece(arg0.getItemStackFromSlot(EntityEquipmentSlot.FEET))) {
             for (ItemStack stack : getAttachedGems(arg2)) {
-                //System.out.println("for loop");
                 Item item = stack.getItem();
-                //System.out.println(item);
                 if (item instanceof IInflictorGem && Objects.equals(((IInflictorGem) item).getAttunedSource(stack), arg1.getDamageType())) {
                     reduction += ((IInflictorGem) item).getDamageResistance(stack, reduction);
-                    //System.out.println("if inner loop");
                 }
             }
         }
@@ -188,7 +183,6 @@ public class AetheriumAshenCloak extends ArmorBase implements IInflictorGemHolde
         super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 
-    //@SideOnly(Side.CLIENT) //does this need to be here for this method? iunno //dont need it because hte particle check is remote
     @Override
     public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         if (stack.getItemDamage() > 0
