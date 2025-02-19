@@ -8,6 +8,12 @@ public class ToolCategory {
     @Config.Comment("Options for the Aetherium Tools")
     public final Tool AETHERIUM = new Tool(7, 3888, 12, 5, 10);
 
+    public final Tool AETHERIUM_CLOCKWORK_AXE = new Tool(3, -1, 18.0f, 16.0f, 22);
+
+    public final Tool AETHERIUM_CLOCKWORK_GRANDHAMMER = new Tool(1, -1, 6.0f, 20.0f, 22);
+
+    public final Tool AETHERIUM_CLOCKWORK_PICKAXE = new Tool(3, -1, 18.0f, 16.0f, 22);
+
     public static class Tool {
         @Config.RequiresMcRestart
         @Config.Name("Harvest Level")

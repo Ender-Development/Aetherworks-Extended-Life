@@ -1,0 +1,6 @@
+{
+    "parent" : "item/generated",
+    "textures" : {
+        "layer0" : "aetherworks:items/aetherium_ashen_cloak_head"
+    }
+}

@@ -64,6 +64,16 @@ item.aw.potiongem.name=Potion Gem
 item.aw.crossbow.quartz.name=§cCrossbow Of The Impending Doom
 item.aw.crossbow.magma.name=§cCrossbow Of The Raging Volcano
 
+item.aetherium_ashen_cloak_head.name=Aetherium-Infused Goggles
+item.aetherium_ashen_cloak_chest.name=Aetherium-Infused Cloak
+item.aetherium_ashen_cloak_legs.name=Aetherium-Infused Leggings
+item.aetherium_ashen_cloak_boots.name=Aetherium-Infused Boots
+item.staff_aetherium.name=Aetherium-Infused Cinder Staff
+item.aetheriumclockworkaxe.name= Aetherium-Infused Clockwork Axe
+item.aetheriumclockworkpickaxe.name= Aetherium-Infused Clockwork Pickaxe
+item.aetheriumblazingray.name= Aetherium-Infused Blazing Ray
+item.aetheriumclockworkgrandhammer.name= Aetherium-Infused Clockwork Grandhammer
+
 aw.tooltip.item.resource.aether_shard=It pulsates as the moonlight reaches it
 aw.tooltip.item.resource.focus_crystal=Able to heat or cool Aetherium Lenses from a distance
 aw.tooltip.item.resource.aetherium_lens=It channels the moonlight

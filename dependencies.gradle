@@ -15,11 +15,6 @@ dependencies {
         runtimeOnly "com.azanor.baubles:Baubles:1.12-" + project.version_baubles
     }
 
-    compileOnly rfg.deobf("curse.maven:aetherium-ashen-armor-359467:" + project.version_aetheriumashenarmor)
-    if (project.debug_aetheriumashenarmor.toBoolean()) {
-        runtimeOnly rfg.deobf("curse.maven:aetherium-ashen-armor-359467:" + project.version_aetheriumashenarmor)
-    }
-
     compileOnly rfg.deobf("curse.maven:soot-extended-life-982730:" + project.version_soot)
     if (project.debug_soot.toBoolean()) {
         runtimeOnly rfg.deobf("curse.maven:soot-extended-life-982730:" + project.version_soot)
