@@ -29,8 +29,15 @@ public class TileAnvil extends TileEntity implements IForgePart, ISyncable {
         protected void onContentsChanged(int slot) {
             if (!TileAnvil.this.world.isRemote) {
                 TileAnvil.this.sync();
+                TileAnvil.this.syncTick();
                 world.notifyNeighborsOfStateChange(TileAnvil.this.getPos(), TileAnvil.this.getBlockType(), true);
             }
+        }
+
+        @Override
+        public int getSlotLimit(int slot)
+        {
+            return 1;
         }
     };
 

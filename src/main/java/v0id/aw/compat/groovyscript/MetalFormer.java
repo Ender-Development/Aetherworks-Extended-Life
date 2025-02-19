@@ -1,6 +1,5 @@
 package v0id.aw.compat.groovyscript;
 
-import com.aetheriumashenarmor.recipe.AAARecipeRegistry;
 import com.cleanroommc.groovyscript.api.GroovyBlacklist;
 import com.cleanroommc.groovyscript.api.GroovyLog;
 import com.cleanroommc.groovyscript.api.IIngredient;

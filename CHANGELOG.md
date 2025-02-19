@@ -2,10 +2,16 @@
 
 A dwarven magic addon
 
-## v1.3.0 - Internal Overhaul
+## v1.3.0 - Internal Overhaul + AAA
 ### Changes
 - updated dependencies
 - switched to stable mappings version 39
+- merged [Aetherium Ashen Armor](https://www.curseforge.com/minecraft/mc-mods/aetherium-ashen-armor) into my fork
+
+### Bugfixes
+- update MetalFormer and Anvil, even when not part of a forge, to fix inventory rendering issues
+- limit the Anvil Inventory stack size to 1 to prevent item deletion
+- added a check to prevent obtaining items with 32767 damage value from geodes
 
 ## v1.2.1 - CraftTweaker fix
 ### Changes

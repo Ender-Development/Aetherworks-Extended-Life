@@ -31,6 +31,7 @@ public class TileMetalFormer extends TileSyncableFluidHandler implements IForgeP
             if (!TileMetalFormer.this.world.isRemote)
             {
                 TileMetalFormer.this.sync();
+                TileMetalFormer.this.syncTick();
                 world.notifyNeighborsOfStateChange(TileMetalFormer.this.getPos(), TileMetalFormer.this.getBlockType(), true);
             }
         }

@@ -80,7 +80,12 @@ public class AetheriumAnvilRecipes
                 Entry e = WeightedRandom.getRandomItem(entries, RANDOM.nextInt(WeightedRandom.getTotalWeight(entries)));
                 String oreDictName = e.entry;
                 NonNullList<ItemStack> items = OreDictionary.getOres(oreDictName);
-                return items.isEmpty() ? super.getOutput(w) : items.get(0);
+                ItemStack outputItem = items.isEmpty() ? super.getOutput(w) : items.get(0);
+                if (outputItem.getItemDamage() == OreDictionary.WILDCARD_VALUE)
+                {
+                    outputItem.setItemDamage(0);
+                }
+                return outputItem;
             }
 
             return super.getOutput(w);
