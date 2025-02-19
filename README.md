@@ -27,9 +27,7 @@ Current Changes to Aetherworks v1.0.0.3:
 - transformed the wiki into it's own chapter in the Ancient Codex
 - added a bunch more config options to all machines
 - added comparator support to the Aetherium Anvil, Metal Former and Forge Core
-
-Planned Changes:
-- [Baubles](https://www.curseforge.com/minecraft/mc-mods/baubles-lts) support
+- merged [Aetherium Ashen Armor](https://www.curseforge.com/minecraft/mc-mods/aetherium-ashen-armor) into my fork
 
 ## [Ender-Development](https://github.com/Ender-Development)
 
