@@ -30,7 +30,7 @@ public class AetherOre extends Block
         this.setResistance(12);
         this.setCreativeTab(AWTabs.TAB_AW);
         this.setLightLevel(1F);
-        this.setUnlocalizedName("aw.aether_ore");
+        this.setTranslationKey("aw.aether_ore");
         this.setHarvestLevel("pickaxe", 3);
     }
 
@@ -42,7 +42,7 @@ public class AetherOre extends Block
     }
 
     @Override
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
     }

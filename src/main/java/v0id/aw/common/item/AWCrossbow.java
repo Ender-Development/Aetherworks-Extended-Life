@@ -43,7 +43,7 @@ public class AWCrossbow extends ItemBow
         this.setMaxDamage(ToolMaterial.DIAMOND.getMaxUses());
         this.setCreativeTab(AWTabs.TAB_AW);
         this.setRegistryName(type == Type.QUARTZ ? AWConsts.itemCrossbowQuartz : AWConsts.itemCrossbowMagma);
-        this.setUnlocalizedName("aw.crossbow." + type.name().toLowerCase());
+        this.setTranslationKey("aw.crossbow." + type.name().toLowerCase());
         this.type = type;
         this.addPropertyOverride(new ResourceLocation("draw"), new IItemPropertyGetter()
         {

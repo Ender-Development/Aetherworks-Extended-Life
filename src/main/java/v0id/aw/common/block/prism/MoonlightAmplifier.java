@@ -34,7 +34,7 @@ public class MoonlightAmplifier extends Block
         this.setSoundType(SoundType.GLASS);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         this.setRegistryName(AWConsts.blockMoonlightAmplifier);
-        this.setUnlocalizedName("aw.moonlight_amplifier");
+        this.setTranslationKey("aw.moonlight_amplifier");
         this.setCreativeTab(AWTabs.TAB_AW);
     }
 
@@ -51,7 +51,7 @@ public class MoonlightAmplifier extends Block
     }
 
     @Override
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.SOLID;
     }
@@ -111,7 +111,7 @@ public class MoonlightAmplifier extends Block
 
         for (float i = 0; i + 1 < dirFound * 8; ++i)
         {
-            AetherWorks.proxy.spawnParticleGlow(worldIn, rX + dir.getFrontOffsetX() * (i / 8), pos.getY() + 0.5F, rZ + dir.getFrontOffsetZ() * (i / 8), 0, 0, 0, 0, 0.72F, 0.95F, 2.5f, 60);
+            AetherWorks.proxy.spawnParticleGlow(worldIn, rX + dir.getXOffset() * (i / 8), pos.getY() + 0.5F, rZ + dir.getZOffset() * (i / 8), 0, 0, 0, 0, 0.72F, 0.95F, 2.5f, 60);
         }
 
         super.randomDisplayTick(stateIn, worldIn, pos, rand);

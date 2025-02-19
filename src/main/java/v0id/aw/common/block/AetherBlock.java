@@ -24,7 +24,7 @@ public class AetherBlock extends Block
         this.setResistance(12);
         this.setCreativeTab(AWTabs.TAB_AW);
         this.setLightLevel(1F);
-        this.setUnlocalizedName("aw.block_aether");
+        this.setTranslationKey("aw.block_aether");
         this.setHarvestLevel("pickaxe", 3);
     }
 

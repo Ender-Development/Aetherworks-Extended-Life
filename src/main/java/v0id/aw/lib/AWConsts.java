@@ -14,7 +14,7 @@ public class AWConsts
     public static final String MODID = "aetherworks";
     public static final String MODNAME = "Aetherworks";
     public static final String CFG_FOLDER = Embers.CFG_ADDONS_FOLDER + "aetherworks/";
-    public static final String deps = "required-after:embers@[1.23,);before:crafttweaker";
+    public static final String deps = "required-after:embers@[1.23,);required-after:baubles;before:crafttweaker";
 
     public static final String clientProxy = "v0id.aw.client.AWClient";
     public static final String serverProxy = "v0id.aw.server.AWServer";

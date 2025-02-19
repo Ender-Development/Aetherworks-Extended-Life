@@ -2,6 +2,11 @@
 
 A dwarven magic addon
 
+## v1.3.0 - Internal Overhaul
+### Changes
+- updated dependencies
+- switched to stable mappings version 39
+
 ## v1.2.1 - CraftTweaker fix
 ### Changes
 - Aetherium Ingot and Plate recipes now check for the Bronze OreDict instead of the Embers Bronze variant

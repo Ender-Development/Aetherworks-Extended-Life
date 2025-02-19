@@ -180,7 +180,7 @@ public class AWHarvestHelper
 
         if (flag)
         {
-            iblockstate.getBlock().onBlockDestroyedByPlayer(w, pos, iblockstate);
+            iblockstate.getBlock().onPlayerDestroy(w, pos, iblockstate);
         }
 
         return flag;
@@ -468,7 +468,7 @@ public class AWHarvestHelper
 
             if (flag)
             {
-                iblockstate.getBlock().onBlockDestroyedByPlayer(this.harvestedIn, pos, iblockstate);
+                iblockstate.getBlock().onPlayerDestroy(this.harvestedIn, pos, iblockstate);
             }
 
             return flag;

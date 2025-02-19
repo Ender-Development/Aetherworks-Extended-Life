@@ -26,7 +26,7 @@ public class AWCrown extends ItemArmor
     {
         super(ArmorMaterial.DIAMOND, 3, EntityEquipmentSlot.HEAD);
         this.setRegistryName(AWConsts.itemCrown);
-        this.setUnlocalizedName("aw.crown");
+        this.setTranslationKey("aw.crown");
         this.setCreativeTab(AWTabs.TAB_AW);
     }
 

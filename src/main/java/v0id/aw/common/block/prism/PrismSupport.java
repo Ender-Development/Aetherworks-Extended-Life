@@ -18,7 +18,7 @@ public class PrismSupport extends Block
         this.setResistance(6F);
         this.setCreativeTab(AWTabs.TAB_AW);
         this.setRegistryName(AWConsts.blockPrismSupport);
-        this.setUnlocalizedName("aw.prism_support");
+        this.setTranslationKey("aw.prism_support");
     }
 
     public boolean isOpaqueCube(IBlockState state)

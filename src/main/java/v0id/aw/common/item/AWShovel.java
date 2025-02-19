@@ -76,12 +76,12 @@ public class AWShovel extends ItemSpade
         if (type == Type.REDSTONE)
         {
             this.setRegistryName(AWConsts.itemShovelRedstone);
-            this.setUnlocalizedName("aw.redstone_shovel");
+            this.setTranslationKey("aw.redstone_shovel");
         }
         else
         {
             this.setRegistryName(AWConsts.itemShovelSlime);
-            this.setUnlocalizedName("aw.slime_shovel");
+            this.setTranslationKey("aw.slime_shovel");
         }
 
         this.setCreativeTab(AWTabs.TAB_AW);
@@ -144,9 +144,9 @@ public class AWShovel extends ItemSpade
                         continue;
                     }
 
-                    int oX = direction.getFrontOffsetX() == 0 ? dx : 0;
-                    int oY = direction.getFrontOffsetY() == 0 ? dy : 0;
-                    int oZ = direction.getFrontOffsetZ() == 0 ? direction.getFrontOffsetY() == 0 ? dx : dy : 0;
+                    int oX = direction.getXOffset() == 0 ? dx : 0;
+                    int oY = direction.getYOffset() == 0 ? dy : 0;
+                    int oZ = direction.getZOffset() == 0 ? direction.getYOffset() == 0 ? dx : dy : 0;
                     BlockPos at = pos.add(oX, oY, oZ);
                     IBlockState stateAt = worldIn.getBlockState(at);
                     if (!stateAt.equals(state))
@@ -295,9 +295,9 @@ public class AWShovel extends ItemSpade
                                     continue;
                                 }
 
-                                int oX = facing.getFrontOffsetX() == 0 ? dx : 0;
-                                int oY = facing.getFrontOffsetY() == 0 ? dy : 0;
-                                int oZ = facing.getFrontOffsetZ() == 0 ? facing.getFrontOffsetY() == 0 ? dx : dy : 0;
+                                int oX = facing.getXOffset() == 0 ? dx : 0;
+                                int oY = facing.getYOffset() == 0 ? dy : 0;
+                                int oZ = facing.getZOffset() == 0 ? facing.getYOffset() == 0 ? dx : dy : 0;
                                 BlockPos at = pos.add(oX, oY, oZ);
                                 IBlockState stateAt = worldIn.getBlockState(at);
                                 ItemStack toUse = findInPlayersInventory(getFocusedStack(player.getHeldItem(hand)), is, player);

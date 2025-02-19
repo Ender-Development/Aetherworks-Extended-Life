@@ -46,7 +46,7 @@ public class HeatDial extends Block implements IDial
     {
         super(Material.IRON);
         this.setRegistryName(AWConsts.blockHeatDial);
-        this.setUnlocalizedName("aw.heat_dial");
+        this.setTranslationKey("aw.heat_dial");
         this.setHardness(1);
         this.setResistance(3);
         this.setSoundType(SoundType.METAL);

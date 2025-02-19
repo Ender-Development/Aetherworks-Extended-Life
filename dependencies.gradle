@@ -1,11 +1,12 @@
 dependencies {
+    // Include StripLatestForgeRequirements by default for the dev env, saves everyone a hassle
+    runtimeOnly 'com.cleanroommc:strip-latest-forge-requirements:1.0'
+    // Include OSXNarratorBlocker by default for the dev env, for M1+ Macs
+    runtimeOnly 'com.cleanroommc:osxnarratorblocker:1.0'
+
     implementation "CraftTweaker2:CraftTweaker2-API:" + project.version_crafttweaker
     implementation "CraftTweaker2:ZenScript:" + project.version_crafttweaker
     implementation "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-" + project.version_crafttweaker
-
-    implementation rfg.deobf("curse.maven:had-enough-items-557549:" + project.version_hadenoughitems)
-    implementation("com.cleanroommc:groovyscript:" + project.version_groovyscript) { transitive = false }
-    // so it doesn't installs JEI
 
     implementation rfg.deobf("curse.maven:embers-extended-life-936489:" + project.version_embers)
 
@@ -24,12 +25,22 @@ dependencies {
         runtimeOnly rfg.deobf("curse.maven:soot-extended-life-982730:" + project.version_soot)
     }
 
-    runtimeOnly rfg.deobf("curse.maven:the-one-probe-community-edition-885670:" + project.version_top)
-    runtimeOnly rfg.deobf("curse.maven:vintagefix-871198:" + project.version_vintagefix)
-    runtimeOnly rfg.deobf("curse.maven:startup-timer-782070:" + project.version_startuptimer)
+    implementation "com.cleanroommc:configanytime:3.0"
 
-    runtimeOnly "com.cleanroommc:configanytime:" + project.version_configanytime
-    runtimeOnly rfg.deobf("curse.maven:red-core-873867:" + project.version_redcore)
-    runtimeOnly rfg.deobf("curse.maven:alfheim-lighting-engine-910715:" + project.version_alfheim)
-    runtimeOnly rfg.deobf("curse.maven:valkyrie-874067:" + project.version_valkyrie)
+    runtimeOnly "curse.maven:the-one-probe-community-edition-885670:5824252"
+    runtimeOnly "curse.maven:topalldependents-1120632:5808089" // updated version of the one probe addons
+
+    runtimeOnly rfg.deobf("curse.maven:lolasm-460609:5257348") // otherwise it will crash
+    runtimeOnly rfg.deobf("curse.maven:vintagefix-871198:5010926") // otherwise it will crash
+    runtimeOnly rfg.deobf("curse.maven:modern-splash-629058:5282442") // otherwise it will crash
+
+    runtimeOnly "curse.maven:red-core-873867:5618189"
+    runtimeOnly "curse.maven:alfheim-lighting-engine-910715:5637644"
+    runtimeOnly "curse.maven:valkyrie-874067:5891664"
+
+    // GroovyScript
+    implementation("com.cleanroommc:groovyscript:" + project.version_groovyscript) { transitive = false } // so it doesn't installs JEI
+
+    // HEI
+    implementation "mezz:jei:4.26.1"
 }

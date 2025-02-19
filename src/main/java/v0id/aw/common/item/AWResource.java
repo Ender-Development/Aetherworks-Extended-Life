@@ -78,9 +78,9 @@ public class AWResource extends Item
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack stack)
+    public String getTranslationKey(ItemStack stack)
     {
-        return super.getUnlocalizedName(stack) + '.' + ResourceType.values()[Math.min(stack.getMetadata(), ResourceType.values().length - 1)].getName();
+        return super.getTranslationKey(stack) + '.' + ResourceType.values()[Math.min(stack.getMetadata(), ResourceType.values().length - 1)].getName();
     }
 
     @Override
@@ -105,7 +105,7 @@ public class AWResource extends Item
         this.setHasSubtypes(true);
         this.setCreativeTab(AWTabs.TAB_AW);
         this.setRegistryName(AWConsts.itemResource);
-        this.setUnlocalizedName("aw.resource");
+        this.setTranslationKey("aw.resource");
     }
 
     @Override

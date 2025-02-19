@@ -74,7 +74,7 @@ public class Component extends Block {
     public Component() {
         super(Material.IRON);
         this.setRegistryName(AWConsts.blockComponent);
-        this.setUnlocalizedName("aw.component");
+        this.setTranslationKey("aw.component");
         this.setHardness(3);
         this.setResistance(3);
         this.setSoundType(SoundType.METAL);
@@ -111,7 +111,7 @@ public class Component extends Block {
     }
 
     @Override
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
     }
 

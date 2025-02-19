@@ -23,7 +23,7 @@ public class Prism extends Block
         this.setHardness(4);
         this.setResistance(8);
         this.setRegistryName(AWConsts.blockPrism);
-        this.setUnlocalizedName("aw.prism");
+        this.setTranslationKey("aw.prism");
         this.setCreativeTab(AWTabs.TAB_AW);
     }
 

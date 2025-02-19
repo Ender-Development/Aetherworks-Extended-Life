@@ -17,9 +17,9 @@ public class ItemBlockForgeComponent extends ItemBlock
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack stack)
+    public String getTranslationKey(ItemStack stack)
     {
-        return super.getUnlocalizedName(stack) + '.' + Component.Type.values()[Math.min(stack.getMetadata(), Component.Type.values().length - 1)].getName();
+        return super.getTranslationKey(stack) + '.' + Component.Type.values()[Math.min(stack.getMetadata(), Component.Type.values().length - 1)].getName();
     }
 
     @Override

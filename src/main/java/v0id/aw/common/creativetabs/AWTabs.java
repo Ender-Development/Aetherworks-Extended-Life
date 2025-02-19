@@ -15,7 +15,7 @@ public class AWTabs
     {
         @SideOnly(Side.CLIENT)
         @Override
-        public ItemStack getTabIconItem()
+        public ItemStack createIcon()
         {
             return new ItemStack(AWItems.RESOURCE, 1, 0);
         }

@@ -98,7 +98,7 @@ public class TileCooler extends TileSyncableFluidHandler implements IForgePart
         if (!this.world.isRemote)
         {
             --this.cooldown;
-            if (this.getWorld().isBlockIndirectlyGettingPowered(this.getPos()) > 0 || this.getWorld().isBlockPowered(this.getPos()))
+            if (this.getWorld().getRedstonePowerFromNeighbors(this.getPos()) > 0 || this.getWorld().isBlockPowered(this.getPos()))
             {
                 if (this.cooldown <= 0)
                 {

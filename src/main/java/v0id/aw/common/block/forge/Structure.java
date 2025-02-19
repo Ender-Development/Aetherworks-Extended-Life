@@ -80,7 +80,7 @@ public class Structure extends Block
         this.setResistance(10);
         this.setSoundType(SoundType.METAL);
         this.setDefaultState(this.blockState.getBaseState().withProperty(OFFSET_PROPERTY, Offset.NONE));
-        this.setUnlocalizedName("aw.forge_structure");
+        this.setTranslationKey("aw.forge_structure");
         this.setCreativeTab(AWTabs.TAB_AW);
     }
 

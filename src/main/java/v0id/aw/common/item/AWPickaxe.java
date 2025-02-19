@@ -57,12 +57,12 @@ public class AWPickaxe extends ItemPickaxe
         if (type == Type.AETHER)
         {
             this.setRegistryName(AWConsts.itemPickaxeAether);
-            this.setUnlocalizedName("aw.aether_pickaxe");
+            this.setTranslationKey("aw.aether_pickaxe");
         }
         else
         {
             this.setRegistryName(AWConsts.itemPickaxeEmber);
-            this.setUnlocalizedName("aw.ember_pickaxe");
+            this.setTranslationKey("aw.ember_pickaxe");
         }
 
         this.setCreativeTab(AWTabs.TAB_AW);
@@ -114,9 +114,9 @@ public class AWPickaxe extends ItemPickaxe
                         continue;
                     }
 
-                    int oX = direction.getFrontOffsetX() == 0 ? dx : 0;
-                    int oY = direction.getFrontOffsetY() == 0 ? dy : 0;
-                    int oZ = direction.getFrontOffsetZ() == 0 ? direction.getFrontOffsetY() == 0 ? dx : dy : 0;
+                    int oX = direction.getXOffset() == 0 ? dx : 0;
+                    int oY = direction.getYOffset() == 0 ? dy : 0;
+                    int oZ = direction.getZOffset() == 0 ? direction.getYOffset() == 0 ? dx : dy : 0;
                     BlockPos at = pos.add(oX, oY, oZ);
                     IBlockState stateAt = worldIn.getBlockState(at);
                     if (!stateAt.equals(state))

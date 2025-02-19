@@ -79,13 +79,13 @@ public class Geode extends Item
         super();
         this.setRegistryName(AWConsts.itemGeode);
         this.setHasSubtypes(true);
-        this.setUnlocalizedName("aw.geode");
+        this.setTranslationKey("aw.geode");
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack stack)
+    public String getTranslationKey(ItemStack stack)
     {
-        return super.getUnlocalizedName(stack) + '.' + this.getType(stack).getName();
+        return super.getTranslationKey(stack) + '.' + this.getType(stack).getName();
     }
 
     @Override

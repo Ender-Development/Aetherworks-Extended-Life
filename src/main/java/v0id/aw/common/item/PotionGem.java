@@ -25,7 +25,7 @@ public class PotionGem extends Item
         this.setHasSubtypes(true);
         this.setCreativeTab(AWTabs.TAB_AW);
         this.setRegistryName(AWConsts.itemPotionGemID);
-        this.setUnlocalizedName("aw.potiongem");
+        this.setTranslationKey("aw.potiongem");
     }
 
     @Override

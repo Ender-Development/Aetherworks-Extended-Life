@@ -62,12 +62,12 @@ public class AWAxe extends ItemAxe
         if (type == Type.PRISMARINE)
         {
             this.setRegistryName(AWConsts.itemAxePrismarine);
-            this.setUnlocalizedName("aw.prismarine_axe");
+            this.setTranslationKey("aw.prismarine_axe");
         }
         else
         {
             this.setRegistryName(AWConsts.itemAxeEnder);
-            this.setUnlocalizedName("aw.ender_axe");
+            this.setTranslationKey("aw.ender_axe");
         }
 
         this.setCreativeTab(AWTabs.TAB_AW);
@@ -110,9 +110,9 @@ public class AWAxe extends ItemAxe
                         continue;
                     }
 
-                    int oX = direction.getFrontOffsetX() == 0 ? dx : 0;
-                    int oY = direction.getFrontOffsetY() == 0 ? dy : 0;
-                    int oZ = direction.getFrontOffsetZ() == 0 ? direction.getFrontOffsetY() == 0 ? dx : dy : 0;
+                    int oX = direction.getXOffset() == 0 ? dx : 0;
+                    int oY = direction.getYOffset() == 0 ? dy : 0;
+                    int oZ = direction.getZOffset() == 0 ? direction.getYOffset() == 0 ? dx : dy : 0;
                     BlockPos at = pos.add(oX, oY, oZ);
                     IBlockState stateAt = worldIn.getBlockState(at);
                     if (!stateAt.equals(state))

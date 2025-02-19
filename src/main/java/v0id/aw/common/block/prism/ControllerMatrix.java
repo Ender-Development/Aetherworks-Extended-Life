@@ -24,7 +24,7 @@ public class ControllerMatrix extends Block
         this.setHardness(3);
         this.setResistance(6);
         this.setCreativeTab(AWTabs.TAB_AW);
-        this.setUnlocalizedName("aw.aether_prism_controller_matrix");
+        this.setTranslationKey("aw.aether_prism_controller_matrix");
         this.setHarvestLevel("pickaxe", 1);
     }
 
@@ -41,7 +41,7 @@ public class ControllerMatrix extends Block
     }
 
     @Override
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.SOLID;
     }
