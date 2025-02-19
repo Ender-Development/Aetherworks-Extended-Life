@@ -13,6 +13,13 @@ A dwarven magic addon
 - limit the Anvil Inventory stack size to 1 to prevent item deletion
 - added a check to prevent obtaining items with 32767 damage value from geodes
 
+## v1.2.2 - Recipe fix
+### Changes
+- updated Embers dependency
+
+### Bugfixes
+- fixed the focus crystal recipe
+
 ## v1.2.1 - CraftTweaker fix
 ### Changes
 - Aetherium Ingot and Plate recipes now check for the Bronze OreDict instead of the Embers Bronze variant
